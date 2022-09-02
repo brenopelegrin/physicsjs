@@ -1,0 +1,67 @@
+<html>
+
+<head>
+	<script src="plotly-2.14.0.min.js"></script>
+	<script src="movimento3D.js"></script>
+</head>
+
+<body>
+	<h3>Gráfico</h3>
+	<div id="tester" style="width:600px;height:250px;"></div>
+	<script>
+		data = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]])
+		r_x = get_x_values(data[2])
+		r_y = get_y_values(data[2])
+		r_z = get_z_values(data[2])
+		TESTER = document.getElementById('tester');
+		var trace1 = {
+			name: 'sem resistencia',
+			type: 'scatter3d',
+			mode: 'lines',
+			opacity: 1.0,
+			x: r_x,
+			y: r_y,
+			z: r_z, 
+			line: {
+				width: 6,
+				reversescale: false,
+			},
+		};
+		var trace2 = {
+			name: 'sem resistencia2',
+			type: 'scatter3d',
+			mode: 'lines',
+			opacity: 1.0,
+			x: r_x,
+			y: r_y,
+			z: r_z, 
+			line: {
+				width: 6,
+				reversescale: false,
+			},
+		};
+
+		traces = [trace1, trace2];
+
+		var layout = {
+			scene: {
+				title: 'titulo',
+				xaxis: {
+					title: 'trajetoria x'
+				},
+				yaxis: {
+					title: 'trajetoria y'
+				},
+				zaxis: {
+					title: 'trajetoria z'
+				}
+			},
+			margin: { t: 0 },
+			height: 640,
+		};
+
+		Plotly.newPlot(TESTER, traces, layout);
+	</script>
+</body>
+
+</html>
