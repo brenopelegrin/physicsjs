@@ -268,6 +268,12 @@ function iniciar(){
         yaxis: {
             title: 'vx (m/s)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_vy_t = {
@@ -278,6 +284,12 @@ function iniciar(){
         yaxis: {
             title: 'vy (m/s)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_vz_t = {
@@ -288,6 +300,12 @@ function iniciar(){
         yaxis: {
             title: 'vz (m/s)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_rx_t = {
@@ -298,6 +316,12 @@ function iniciar(){
         yaxis: {
             title: 'rx (m)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_ry_t = {
@@ -308,6 +332,12 @@ function iniciar(){
         yaxis: {
             title: 'ry (m)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_rz_t = {
@@ -318,6 +348,12 @@ function iniciar(){
         yaxis: {
             title: 'rz (m)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_trajetoria = {
@@ -333,6 +369,12 @@ function iniciar(){
                 title: 'z (m)'
             }
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
 
     var layout_velocidade = {
@@ -343,6 +385,12 @@ function iniciar(){
         yaxis: {
             title: 'v (m/s)'
         },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
     };
     
 
