@@ -41,7 +41,6 @@ function iniciar(){
     v1_y = get_y_values(data1[1])
     v1_z = get_z_values(data1[1])
     t1 = data1[0]
-    console.log(data1);
 
     data2 = simulate(0.001, massa, raio, [[parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)]], [[parseFloat(rx.value),parseFloat(ry.value),parseFloat(rz.value)]], "with drag");
 
@@ -53,7 +52,6 @@ function iniciar(){
     v2_y = get_y_values(data2[1])
     v2_z = get_z_values(data2[1])
     t2 = data2[0]
-    console.log(data2);
 
     var config = {responsive: true};
     div_trajetoria = document.getElementById('g_trajetoria');
