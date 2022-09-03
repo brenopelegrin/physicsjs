@@ -3,38 +3,43 @@
 <head>
 	<script src="plotly-2.14.0.min.js"></script>
 	<script src="movimento3D.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
 </head>
 
 <body>
 	<h3>Gráfico</h3>
 	<div id="tester" style="width:600px;height:250px;"></div>
 	<script>
-		data = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]])
-		r_x = get_x_values(data[2])
-		r_y = get_y_values(data[2])
-		r_z = get_z_values(data[2])
+		data1 = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]], "without drag");
+		r1_x = get_x_values(data1[2])
+		r1_y = get_y_values(data1[2])
+		r1_z = get_z_values(data1[2])
 		TESTER = document.getElementById('tester');
 		var trace1 = {
-			name: 'sem resistencia',
+			name: 'without drag',
 			type: 'scatter3d',
 			mode: 'lines',
 			opacity: 1.0,
-			x: r_x,
-			y: r_y,
-			z: r_z, 
+			x: r1_x,
+			y: r1_y,
+			z: r1_z, 
 			line: {
 				width: 6,
 				reversescale: false,
 			},
 		};
+		data2 = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]], "with drag");
+		r2_x = get_x_values(data2[2])
+		r2_y = get_y_values(data2[2])
+		r2_z = get_z_values(data2[2])
 		var trace2 = {
-			name: 'sem resistencia2',
+			name: 'com resistencia2',
 			type: 'scatter3d',
 			mode: 'lines',
 			opacity: 1.0,
-			x: r_x,
-			y: r_y,
-			z: r_z, 
+			x: r2_x,
+			y: r2_y,
+			z: r2_z, 
 			line: {
 				width: 6,
 				reversescale: false,

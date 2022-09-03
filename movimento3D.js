@@ -1,3 +1,5 @@
+var nj = require('numjs');
+
 let g = [0.0,-9.81,0.0];
 //let r = [[0.0,0.0,0.0]];
 //let v = [[5.0,5.0,0.0]];
@@ -19,6 +21,14 @@ function vector_plus_vector(matrix1, matrix2){
     return result;
 }
 
+function get_vector_norm(matrix1){
+    let x = matrix1[0];
+    let y = matrix1[1];
+    let z = matrix1[2];
+    let norm = Math.sqrt( (x**2) + (y**2) + (z**2) );
+    return norm;
+}
+
 function vector_times_vector(matrix1, matrix2){
     let x = matrix1[0] * matrix2[0];
     let y = matrix1[1] * matrix2[1];
@@ -29,10 +39,7 @@ function vector_times_vector(matrix1, matrix2){
 }
 
 function vector_to_hat(matrix1){
-    let x = matrix1[0];
-    let y = matrix1[1];
-    let z = matrix1[2];
-    norm = Math.sqrt( (x**2) + (y**2) + (z**2) );
+    norm = get_vector_norm(matrix1);
     result = scalar_times_vector(1/norm, matrix1);
     return result;
 }
@@ -44,16 +51,21 @@ function euler(dt,a,v,r){
     return [vn, rn];
 }
 
-function drag_force(air_viscosity, air_density, drag_coef, cross_area, v){
-    let scalar = -0.5*drag_coef*air_density*cross_area*vector_times_vector(v,v);
-    let v_hat = vector_to_hat(v);
-    let drag = scalar_times_vector(scalar, v_hat);
+function drag_force(air_viscosity, air_density, drag_coef, dimension_1d, dimension_2d, v){
+    // drag = -(bv + cv^2)vhat
+
+    let scalar_order2 = (0.5*air_viscosity*air_density*drag_coef*dimension_2d*vector_times_vector(v,v));
+    // order1 = -b*v*vhat but vhat*v = vnorm  
+    let scalar_order1 = dimension_1d*air_viscosity*get_vector_norm(v);
+
+    let drag = scalar_times_vector(-(scalar_order1+scalar_order2), vector_to_hat(v));
+
     return drag;
 }
 
 function simulate(dt,m,v,r,withdragcondition){
-    let air_viscosity = 0.001;
-    let air_density = 1.273;
+    let air_viscosity = 1.6E-5;
+    let air_density = 1.164;
     let drag_coef = 0.5;
     let radius = 0.1; //meters
     let cross_area = Math.PI*radius**2;
@@ -64,9 +76,9 @@ function simulate(dt,m,v,r,withdragcondition){
     let i = 0;
     while (r[i][1] >= 0){
         if (withdragcondition == "with drag"){
-            Fdrag = drag_force(air_viscosity, air_density, drag_coef, cross_area, v[i]);
+            Fdrag = drag_force(air_viscosity, air_density, drag_coef, 2*radius, cross_area, v[i]);
             Fnet = vector_plus_vector(Fg, Fdrag);
-            a_new = [scalar_times_vector(1/m, Fnet)];
+            a_new = scalar_times_vector(1/m, Fnet);
 
             a.push(a_new);
         }
@@ -114,9 +126,3 @@ function get_z_values(grandeza){
     
     return temp_array;
 }
-
-//dados = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]], "with drag");
-//console.log(dados[1]);
-
-teste = vector_to_hat([2,2,2]); //problema! nao esta retornando 1
-console.log(teste);
