@@ -10,6 +10,7 @@
 <body>
 	<div class="controles">
 		<span class="titulo">Controles</span>
+		<p>Obs: o corpo será laçado com v=(10,10,0) m/s a partir de (0,0,0) m.</p>
 		<div class="slidecontainer">
 			<p>Raio da bola (cm): <span id="demo1"></span></p>
 			<input type="range" min="1" max="50" value="10" class="slider" id="myRange1">
@@ -55,7 +56,7 @@
 			TESTER1 = document.getElementById('tester1');
 			TESTER2 = document.getElementById('tester2');
 			var trace_r1 = {
-				name: 'without drag',
+				name: 'sem resistência do ar',
 				type: 'scatter3d',
 				mode: 'lines',
 				opacity: 1.0,
@@ -79,7 +80,7 @@
 			t2 = data2[0]
 
 			var trace_r2 = {
-				name: 'with drag',
+				name: 'com resistência do ar',
 				type: 'scatter3d',
 				mode: 'lines',
 				opacity: 1.0,
@@ -93,7 +94,7 @@
 			};
 
 			var trace_v1_x = {
-				name: 'vx without drag',
+				name: 'vx sem resistência do ar',
 				type: 'scatter',
 				mode: 'lines',
 				opacity: 1.0,
@@ -106,7 +107,7 @@
 			};
 
 			var trace_v1_y = {
-				name: 'vy without drag',
+				name: 'vy sem resistência do ar',
 				type: 'scatter',
 				mode: 'lines',
 				opacity: 1.0,
@@ -119,7 +120,7 @@
 			};
 
 			var trace_v2_x = {
-				name: 'vx with drag',
+				name: 'vx com resistência do ar',
 				type: 'scatter',
 				mode: 'lines',
 				opacity: 1.0,
@@ -132,7 +133,7 @@
 			};
 
 			var trace_v2_y = {
-				name: 'vy with drag',
+				name: 'vy com resistência do ar',
 				type: 'scatter',
 				mode: 'lines',
 				opacity: 1.0,
