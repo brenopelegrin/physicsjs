@@ -67,7 +67,8 @@ function simulate(dt,m,radius,v,r,withdragcondition){
     a = []
 
     let i = 0;
-    while (r[i][1] >= 0){
+    while (r[i][1] >= radius){
+        console.log(r[i][1])
         if (withdragcondition == "with drag"){
             Fdrag = drag_force(air_viscosity, air_density, drag_coef, 2*radius, cross_area, v[i]);
             Fnet = vector_plus_vector(Fg, Fdrag);

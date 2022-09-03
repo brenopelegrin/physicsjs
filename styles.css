@@ -4,10 +4,14 @@ body{
   flex: auto;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  max-width: 90%;
 }
 
 p{
   font-family: 'Lato', sans-serif;
+  font-size: small;
+  margin: 2px;
 }
 
 span.titulo{
@@ -23,7 +27,7 @@ span.titulo{
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  margin: 10px;
+  margin: 10px auto;
   align: auto;
 }
 
@@ -31,26 +35,58 @@ span.titulo{
   border: none;
   flex: auto;
   display: flex;
+  border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+  background-color: #E0E0E0;
+  margin-bottom: 10px;
 }
 
 input{
+  border: none;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+	background: #e0e0e0;
+  text-align: center;
+}
+
+.vectorcontainer{
+  flex: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+  padding-bottom: 5px;
+}
+
+.input_label{
+  display: flex;
+  flex-direction: column;
+}
+
+.numberinput{
+  color: black;
+  height: 20px;
+  width: 100px;
+	cursor: pointer;
+	display: flex;
+}
+
+.botao{
 	height: 30px;
 	cursor: pointer;
 	display: flex;
-	align-items: center;
-  text-align: center;
 	border: none;
 	border-radius: 5px;
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
 	background: #04AA6D;
+  text-align: center;
 }
 
 .slidecontainer {
     flex: auto;
     max-width: 100%;
-    margin: 10px;
+    margin: 5px;
   }
 
 .controles{
@@ -59,18 +95,18 @@ input{
     flex-direction: column;
     border: none;
     border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
     background-color:#ffff;
     max-width: 100%;
-    max-height: 50%;
-    padding: 10px;
-    margin: 10px;
+    margin: 5px auto;
+    max-height: 100%;
+    padding: 5px;
 }
   
   .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 25px;
+    height: 20px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
@@ -85,15 +121,15 @@ input{
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     background: #04AA6D;
     cursor: pointer;
   }
   
   .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     background: #04AA6D;
     cursor: pointer;
   }
