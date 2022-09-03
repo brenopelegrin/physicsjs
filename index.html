@@ -7,8 +7,8 @@
 </head>
 
 <body>
-	<h3>Gráfico</h3>
 	<div class="controles">
+		<span class="titulo">Controles</span>
 		<div class="slidecontainer">
 			<p>Raio da bola (cm): <span id="demo1"></span></p>
 			<input type="range" min="1" max="50" value="10" class="slider" id="myRange1">
@@ -17,7 +17,7 @@
 			<p>Massa da bola (g): <span id="demo2"></span></p>
 			<input type="range" min="10" max="5000" value="0.5" class="slider" id="myRange2">
 		</div>
-		<input id="clickMe" type="button" value="Simular" onclick="iniciar();" />
+		<input class="botao" id="clickMe" type="button" value="Simular" onclick="iniciar();" />
 	</div>
 	  
 	<script>
@@ -44,8 +44,16 @@
 			r1_x = get_x_values(data1[2])
 			r1_y = get_y_values(data1[2])
 			r1_z = get_z_values(data1[2])
-			TESTER = document.getElementById('tester');
-			var trace1 = {
+
+			v1_x = get_x_values(data1[1])
+			v1_y = get_y_values(data1[1])
+			v1_z = get_z_values(data1[1])
+			t1 = data1[0]
+
+			var config = {responsive: true};
+			TESTER1 = document.getElementById('tester1');
+			TESTER2 = document.getElementById('tester2');
+			var trace_r1 = {
 				name: 'without drag',
 				type: 'scatter3d',
 				mode: 'lines',
@@ -58,11 +66,18 @@
 					reversescale: false,
 				},
 			};
+
 			data2 = simulate(0.001, massa, raio, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "with drag");
 			r2_x = get_x_values(data2[2])
 			r2_y = get_y_values(data2[2])
 			r2_z = get_z_values(data2[2])
-			var trace2 = {
+
+			v2_x = get_x_values(data2[1])
+			v2_y = get_y_values(data2[1])
+			v2_z = get_z_values(data2[1])
+			t2 = data2[0]
+
+			var trace_r2 = {
 				name: 'with drag',
 				type: 'scatter3d',
 				mode: 'lines',
@@ -76,11 +91,64 @@
 				},
 			};
 
-			traces = [trace1, trace2];
+			var trace_v1_x = {
+				name: 'vx without drag',
+				type: 'scatter',
+				mode: 'lines',
+				opacity: 1.0,
+				x: t1,
+				y: v1_x,
+				line: {
+					width: 4,
+					reversescale: false,
+				},
+			};
 
-			var layout = {
+			var trace_v1_y = {
+				name: 'vy without drag',
+				type: 'scatter',
+				mode: 'lines',
+				opacity: 1.0,
+				x: t1,
+				y: v1_y,
+				line: {
+					width: 4,
+					reversescale: false,
+				},
+			};
+
+			var trace_v2_x = {
+				name: 'vx with drag',
+				type: 'scatter',
+				mode: 'lines',
+				opacity: 1.0,
+				x: t2,
+				y: v2_x,
+				line: {
+					width: 4,
+					reversescale: false,
+				},
+			};
+
+			var trace_v2_y = {
+				name: 'vy with drag',
+				type: 'scatter',
+				mode: 'lines',
+				opacity: 1.0,
+				x: t2,
+				y: v2_y,
+				line: {
+					width: 4,
+					reversescale: false,
+				},
+			};
+
+			traces_r = [trace_r1, trace_r2];
+			traces_v = [trace_v1_x, trace_v1_y, trace_v2_x, trace_v2_y];
+
+			var layout1 = {
+				title: 'Gráfico da trajetória',
 				scene: {
-					title: 'titulo',
 					xaxis: {
 						title: 'trajetoria x'
 					},
@@ -91,19 +159,33 @@
 						title: 'trajetoria z'
 					}
 				},
-				margin: { t: 0 },
-				height: 640,
 			};
 
-			Plotly.newPlot(TESTER, traces, layout);
+			var layout2 = {
+				title: 'Gráfico da velocidade',
+				scene: {
+					xaxis: {
+						title: 'tempo'
+					},
+					yaxis: {
+						title: 'velocidade'
+					},
+				},
+			};
+			
+
+			Plotly.newPlot(TESTER1, traces_r, layout1, config);
+			Plotly.newPlot(TESTER2, traces_v, layout2, config);
 
 			return 0;
 		}
 
 		document.getElementById("clickMe").onclick = iniciar();
 	</script>	  
-
-	<div id="tester" style="width:600px;height:250px;"></div>
+	<div class="graficos">
+		<div id="tester1" class="grafico"></div>
+		<div id="tester2" class="grafico"></div>
+	</div>
 </body>
 
 </html>
