@@ -3,14 +3,13 @@
 <head>
 	<script src="plotly-2.14.0.min.js"></script>
 	<script src="movimento3D.js"></script>
-	<script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
 </head>
 
 <body>
 	<h3>Gráfico</h3>
 	<div id="tester" style="width:600px;height:250px;"></div>
 	<script>
-		data1 = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]], "without drag");
+		data1 = simulate(0.001, 1.0, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "without drag");
 		r1_x = get_x_values(data1[2])
 		r1_y = get_y_values(data1[2])
 		r1_z = get_z_values(data1[2])
@@ -28,12 +27,12 @@
 				reversescale: false,
 			},
 		};
-		data2 = simulate(0.001, 1.0, [[5.0,5.0,0.0]], [[0.0,0.0,0.0]], "with drag");
+		data2 = simulate(0.001, 1.0, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "with drag");
 		r2_x = get_x_values(data2[2])
 		r2_y = get_y_values(data2[2])
 		r2_z = get_z_values(data2[2])
 		var trace2 = {
-			name: 'com resistencia2',
+			name: 'with drag',
 			type: 'scatter3d',
 			mode: 'lines',
 			opacity: 1.0,

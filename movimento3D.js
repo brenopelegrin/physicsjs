@@ -1,5 +1,3 @@
-var nj = require('numjs');
-
 let g = [0.0,-9.81,0.0];
 //let r = [[0.0,0.0,0.0]];
 //let v = [[5.0,5.0,0.0]];
@@ -54,7 +52,7 @@ function euler(dt,a,v,r){
 function drag_force(air_viscosity, air_density, drag_coef, dimension_1d, dimension_2d, v){
     // drag = -(bv + cv^2)vhat
 
-    let scalar_order2 = (0.5*air_viscosity*air_density*drag_coef*dimension_2d*vector_times_vector(v,v));
+    let scalar_order2 = (0.5*air_density*drag_coef*dimension_2d*vector_times_vector(v,v));
     // order1 = -b*v*vhat but vhat*v = vnorm  
     let scalar_order1 = dimension_1d*air_viscosity*get_vector_norm(v);
 
