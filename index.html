@@ -10,15 +10,15 @@
 <body>
 	<div class="controles">
 		<span class="titulo">Controles</span>
-		<p>Obs: o corpo será laçado com v=(10,10,0) m/s a partir de (0,0,0) m.</p>
-		<p>Desenvolvido por Breno Pelegrin. Acesse o repositório do projeto no <a href="https://github.com/brenopelegrin/physicsjs/">GitHub</a>.</p>
+		<p>Obs: r é o vetor trajetória e v é o vetor velocidade.</p>
+		<p>Desenvolvido por <a href="https://github.com/brenopelegrin/">brenopelegrin</a>. Acesse o repositório do projeto no <a href="https://github.com/brenopelegrin/physicsjs/">GitHub</a>.</p>
 		<div class="slidecontainer">
 			<p>Raio da bola (cm): <span id="demo1"></span></p>
-			<input type="range" min="1" max="50" value="10" class="slider" id="myRange1">
+			<input type="range" min="1" max="50" value="20" class="slider" id="myRange1">
 		</div>
 		<div class="slidecontainer">
 			<p>Massa da bola (g): <span id="demo2"></span></p>
-			<input type="range" min="10" max="5000" value="0.5" class="slider" id="myRange2">
+			<input type="range" min="10" max="5000" value="800" class="slider" id="myRange2">
 		</div>
 		<p>Velocidade inicial do centro de massa (m/s):</p>
 		<div class="vectorcontainer">		
@@ -54,8 +54,14 @@
 
 	</div> 
 	<div class="graficos">
-		<div id="tester1" class="grafico"></div>
-		<div id="tester2" class="grafico"></div>
+		<div id="g_trajetoria" class="grafico"></div>
+		<div id="g_rx" class="grafico"></div>
+		<div id="g_ry" class="grafico"></div>
+		<div id="g_rz" class="grafico"></div>
+		<div id="g_velocidade" class="grafico"></div>
+		<div id="g_vx" class="grafico"></div>
+		<div id="g_vy" class="grafico"></div>
+		<div id="g_vz" class="grafico"></div>
 	</div>
 
 	<script type="text/javascript" src="wrapper.js"></script>

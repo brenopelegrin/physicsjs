@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,900;1,300;1,400;1,900&family=Roboto+Mono:wght@500&family=Roboto:ital,wght@0,100;0,500;0,700;1,400;1,500&display=swap');
 
 body{ 
+  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
   flex: auto;
   display: flex;
   flex-direction: column;
@@ -133,3 +134,4 @@ input{
     background: #04AA6D;
     cursor: pointer;
   }
+
