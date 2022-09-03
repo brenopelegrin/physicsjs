@@ -1,8 +1,4 @@
 let g = [0.0,-9.81,0.0];
-//let r = [[0.0,0.0,0.0]];
-//let v = [[5.0,5.0,0.0]];
-//let dt = 0.001;
-//let m = 1.0;
 
 //linear algebra functions
 function scalar_times_vector(scalar, matrix){
@@ -61,11 +57,10 @@ function drag_force(air_viscosity, air_density, drag_coef, dimension_1d, dimensi
     return drag;
 }
 
-function simulate(dt,m,v,r,withdragcondition){
+function simulate(dt,m,radius,v,r,withdragcondition){
     let air_viscosity = 1.6E-5;
     let air_density = 1.164;
     let drag_coef = 0.5;
-    let radius = 0.1; //meters
     let cross_area = Math.PI*radius**2;
     let time = [0.0];
     let Fg = scalar_times_vector(m, g);

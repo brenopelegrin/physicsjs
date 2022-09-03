@@ -3,69 +3,107 @@
 <head>
 	<script src="plotly-2.14.0.min.js"></script>
 	<script src="movimento3D.js"></script>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 	<h3>Gráfico</h3>
-	<div id="tester" style="width:600px;height:250px;"></div>
+	<div class="controles">
+		<div class="slidecontainer">
+			<p>Raio da bola (cm): <span id="demo1"></span></p>
+			<input type="range" min="1" max="50" value="10" class="slider" id="myRange1">
+		</div>
+		<div class="slidecontainer">
+			<p>Massa da bola (g): <span id="demo2"></span></p>
+			<input type="range" min="10" max="5000" value="0.5" class="slider" id="myRange2">
+		</div>
+		<input id="clickMe" type="button" value="Simular" onclick="iniciar();" />
+	</div>
+	  
 	<script>
-		data1 = simulate(0.001, 1.0, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "without drag");
-		r1_x = get_x_values(data1[2])
-		r1_y = get_y_values(data1[2])
-		r1_z = get_z_values(data1[2])
-		TESTER = document.getElementById('tester');
-		var trace1 = {
-			name: 'without drag',
-			type: 'scatter3d',
-			mode: 'lines',
-			opacity: 1.0,
-			x: r1_x,
-			y: r1_y,
-			z: r1_z, 
-			line: {
-				width: 6,
-				reversescale: false,
-			},
-		};
-		data2 = simulate(0.001, 1.0, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "with drag");
-		r2_x = get_x_values(data2[2])
-		r2_y = get_y_values(data2[2])
-		r2_z = get_z_values(data2[2])
-		var trace2 = {
-			name: 'with drag',
-			type: 'scatter3d',
-			mode: 'lines',
-			opacity: 1.0,
-			x: r2_x,
-			y: r2_y,
-			z: r2_z, 
-			line: {
-				width: 6,
-				reversescale: false,
-			},
-		};
+		var slider1 = document.getElementById("myRange1");
+		var output1 = document.getElementById("demo1");
+		output1.innerHTML = slider1.value;
+		
+		slider1.oninput = function() {
+			output1.innerHTML = this.value;
+		}
 
-		traces = [trace1, trace2];
+		var slider2 = document.getElementById("myRange2");
+		var output2 = document.getElementById("demo2");
+		output2.innerHTML = slider2.value;
+		
+		slider2.oninput = function() {
+			output2.innerHTML = this.value;
+		}
 
-		var layout = {
-			scene: {
-				title: 'titulo',
-				xaxis: {
-					title: 'trajetoria x'
+		function iniciar(){
+			massa = slider2.value*0.001;
+			raio = slider1.value*0.01;
+			data1 = simulate(0.001, massa, raio, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "without drag");
+			r1_x = get_x_values(data1[2])
+			r1_y = get_y_values(data1[2])
+			r1_z = get_z_values(data1[2])
+			TESTER = document.getElementById('tester');
+			var trace1 = {
+				name: 'without drag',
+				type: 'scatter3d',
+				mode: 'lines',
+				opacity: 1.0,
+				x: r1_x,
+				y: r1_y,
+				z: r1_z, 
+				line: {
+					width: 6,
+					reversescale: false,
 				},
-				yaxis: {
-					title: 'trajetoria y'
+			};
+			data2 = simulate(0.001, massa, raio, [[10.0,10.0,0.0]], [[0.0,0.0,0.0]], "with drag");
+			r2_x = get_x_values(data2[2])
+			r2_y = get_y_values(data2[2])
+			r2_z = get_z_values(data2[2])
+			var trace2 = {
+				name: 'with drag',
+				type: 'scatter3d',
+				mode: 'lines',
+				opacity: 1.0,
+				x: r2_x,
+				y: r2_y,
+				z: r2_z, 
+				line: {
+					width: 6,
+					reversescale: false,
 				},
-				zaxis: {
-					title: 'trajetoria z'
-				}
-			},
-			margin: { t: 0 },
-			height: 640,
-		};
+			};
 
-		Plotly.newPlot(TESTER, traces, layout);
-	</script>
+			traces = [trace1, trace2];
+
+			var layout = {
+				scene: {
+					title: 'titulo',
+					xaxis: {
+						title: 'trajetoria x'
+					},
+					yaxis: {
+						title: 'trajetoria y'
+					},
+					zaxis: {
+						title: 'trajetoria z'
+					}
+				},
+				margin: { t: 0 },
+				height: 640,
+			};
+
+			Plotly.newPlot(TESTER, traces, layout);
+
+			return 0;
+		}
+
+		document.getElementById("clickMe").onclick = iniciar();
+	</script>	  
+
+	<div id="tester" style="width:600px;height:250px;"></div>
 </body>
 
 </html>
