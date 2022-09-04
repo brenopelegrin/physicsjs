@@ -20,7 +20,7 @@ function get_vector_norm(matrix1){
     let y = matrix1[1];
     let z = matrix1[2];
     let norm = Math.sqrt( (x**2) + (y**2) + (z**2) );
-    return norm;
+    return norm;    
 }
 
 function vector_times_vector(matrix1, matrix2){
@@ -57,6 +57,55 @@ function drag_force(air_viscosity, air_density, drag_coef, dimension_1d, dimensi
     return drag;
 }
 
+function Arrays_sum(array1, array2) 
+{
+  var result = [];
+  var ctr = 0;
+  var x=0;
+
+  if (array1.length === 0) 
+   return "array1 is empty";
+  if (array2.length === 0) 
+   return "array2 is empty";   
+
+ while (ctr < array1.length && ctr < array2.length) 
+  {
+    result.push(array1[ctr] + array2[ctr]);
+    ctr++;
+  }
+
+ if (ctr === array1.length) 
+ {
+    for (x = ctr; x < array2.length; x++)   {
+      result.push(array2[x]);
+    }
+  } 
+  else
+  {
+  for (x = ctr; x < array1.length; x++) 
+    {
+      result.push(array1[x]);
+    }
+  }
+  return result;
+}
+
+function calc_energy(m, v, r){
+    cinetica = []
+    potencial = []
+    potencialzero = r[0][1]
+    for (arrayv of v){
+        cinetica.push(0.5*m*get_vector_norm(arrayv)**2);
+    }
+    for (arrayr of r){
+        potencial.push(m*get_vector_norm(g)*(arrayr[1]-potencialzero));
+    }
+    
+    energy = Arrays_sum(cinetica, potencial);
+
+    return [energy, cinetica, potencial];
+}
+
 function simulate(dt,m,radius,v,r,withdragcondition){
     let air_viscosity = 1.6E-5;
     let air_density = 1.164;
@@ -68,16 +117,16 @@ function simulate(dt,m,radius,v,r,withdragcondition){
 
     let i = 0;
     while (r[i][1] >= radius){
-        console.log(r[i][1])
         if (withdragcondition == "with drag"){
             Fdrag = drag_force(air_viscosity, air_density, drag_coef, 2*radius, cross_area, v[i]);
-            Fnet = vector_plus_vector(Fg, Fdrag);
+            Fnet = Arrays_sum(Fg, Fdrag);
             a_new = scalar_times_vector(1/m, Fnet);
 
             a.push(a_new);
         }
         else {
-            a.push(Fg);
+            a_new = scalar_times_vector(1/m, Fg);
+            a.push(a_new);
         }
 
         time.push(time[i]+dt)
@@ -91,21 +140,22 @@ function simulate(dt,m,radius,v,r,withdragcondition){
     return [time,v,r];
 }
 
-function get_y_values(grandeza){
-    let temp_array=[]
-    
-    for (let array of grandeza){
-        temp_array.push(array[1])
-    }
-    
-    return temp_array;
-}
 
 function get_x_values(grandeza){
     let temp_array=[]
     
     for (let array of grandeza){
         temp_array.push(array[0])
+    }
+    
+    return temp_array;
+}
+
+function get_y_values(grandeza){
+    let temp_array=[]
+    
+    for (let array of grandeza){
+        temp_array.push(array[1])
     }
     
     return temp_array;

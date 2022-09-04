@@ -42,6 +42,8 @@ function iniciar(){
     v1_z = get_z_values(data1[1])
     t1 = data1[0]
 
+    energias1 = calc_energy(massa, data1[1], data1[2])
+
     data2 = simulate(0.001, massa, raio, [[parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)]], [[parseFloat(rx.value),parseFloat(ry.value),parseFloat(rz.value)]], "with drag");
 
     r2_x = get_x_values(data2[2])
@@ -52,6 +54,8 @@ function iniciar(){
     v2_y = get_y_values(data2[1])
     v2_z = get_z_values(data2[1])
     t2 = data2[0]
+
+    energias2 = calc_energy(massa, data2[1], data2[2])
 
     var config = {responsive: true};
     div_trajetoria = document.getElementById('g_trajetoria');
@@ -64,6 +68,88 @@ function iniciar(){
     div_rx = document.getElementById('g_rx');
     div_ry = document.getElementById('g_ry');
     div_rz = document.getElementById('g_rz');
+
+    div_em = document.getElementById('g_em');
+    div_uk1 = document.getElementById('g_uk1');
+    div_uk2 = document.getElementById('g_uk2');
+
+    var trace_em1 = {
+        name: 'sem resistência do ar',
+        type: 'scatter',
+        mode: 'lines',
+        opacity: 1.0,
+        x: t1,
+        y: energias1[0],
+        line: {
+            width: 4,
+            reversescale: false,
+        },
+    };
+
+    var trace_em2 = {
+        name: 'com resistência do ar',
+        type: 'scatter',
+        mode: 'lines',
+        opacity: 1.0,
+        x: t2,
+        y: energias2[0],
+        line: {
+            width: 4,
+            reversescale: false,
+        },
+    };
+
+    var trace_k1 = {
+        name: 'k sem resistência do ar',
+        type: 'scatter',
+        mode: 'lines',
+        opacity: 1.0,
+        x: t1,
+        y: energias1[1],
+        line: {
+            width: 4,
+            reversescale: false,
+        },
+    };
+
+    var trace_k2 = {
+        name: 'k com resistência do ar',
+        type: 'scatter',
+        mode: 'lines',
+        opacity: 1.0,
+        x: t2,
+        y: energias2[1],
+        line: {
+            width: 4,
+            reversescale: false,
+        },
+    };
+
+    var trace_u1 = {
+        name: 'u sem resistência do ar',
+        type: 'scatter',
+        mode: 'lines',
+        opacity: 1.0,
+        x: t1,
+        y: energias1[2],
+        line: {
+            width: 4,
+            reversescale: false,
+        },
+    };
+
+    var trace_u2 = {
+        name: 'u com resistência do ar',
+        type: 'scatter',
+        mode: 'lines',
+        opacity: 1.0,
+        x: t2,
+        y: energias2[2],
+        line: {
+            width: 4,
+            reversescale: false,
+        },
+    };
 
     var trace_r1 = {
         name: 'sem resistência do ar',
@@ -260,6 +346,74 @@ function iniciar(){
     traces_vy = [trace_v1_y, trace_v2_y];
     traces_vz = [trace_v1_z, trace_v2_z];
 
+    traces_em = [trace_em1, trace_em2];
+    traces_uk1 = [trace_u1, trace_k1];
+    traces_uk2 = [trace_u2, trace_k2];
+
+    var layout_em_t = {
+        title: 'Gráfico de Em (t)',
+        xaxis: {
+            title: 'tempo (s)'
+        },
+        yaxis: {
+            title: 'Em (J)'
+        },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
+    };
+
+    var layout_ku_t = {
+        title: 'Gráfico de K e U (t)',
+        xaxis: {
+            title: 'tempo (s)'
+        },
+        yaxis: {
+            title: 'Energia (J)'
+        },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
+    };
+
+    var layout_k_t = {
+        title: 'Gráfico de K (t)',
+        xaxis: {
+            title: 'tempo (s)'
+        },
+        yaxis: {
+            title: 'K (J)'
+        },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
+    };
+
+    var layout_u_t = {
+        title: 'Gráfico de U (t)',
+        xaxis: {
+            title: 'tempo (s)'
+        },
+        yaxis: {
+            title: 'U (J)'
+        },
+        showlegend: true,
+        legend: {
+            "orientation": "h",
+            x: 0,
+            y: -0.25
+        }
+    };
+
     var layout_vx_t = {
         title: 'Gráfico de vx (t)',
         xaxis: {
@@ -404,6 +558,10 @@ function iniciar(){
     Plotly.newPlot(div_vy, traces_vy, layout_vy_t, config);
     Plotly.newPlot(div_vz, traces_vz, layout_vz_t, config);
 
+    Plotly.newPlot(div_em, traces_em, layout_em_t, config);
+    Plotly.newPlot(div_uk1, traces_uk1, layout_ku_t, config);
+    Plotly.newPlot(div_uk2, traces_uk2, layout_ku_t, config);
+    
     return 0;
 }
 
