@@ -1,0 +1,74 @@
+<html>
+
+<head>
+	<title>3d kinematics simulator</title>
+	<script type="text/javascript" src="plotly-2.14.0.min.js"></script>
+	<script type="text/javascript" src="movimento3D.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="movimento3D.css">
+</head>
+
+<body>
+	<div class="controles">
+		<span class="titulo">Controles</span>
+		<p>Obs: r é o vetor trajetória e v é o vetor velocidade.</p>
+		<p>Desenvolvido por <a href="https://github.com/brenopelegrin/">brenopelegrin</a>. Acesse o repositório do projeto no <a href="https://github.com/brenopelegrin/physicsjs/">GitHub</a>.</p>
+		<div class="slidecontainer">
+			<p>Raio da bola (cm): <span id="demo1"></span></p>
+			<input type="range" min="1" max="50" value="20" class="slider" id="myRange1">
+		</div>
+		<div class="slidecontainer">
+			<p>Massa da bola (g): <span id="demo2"></span></p>
+			<input type="range" min="10" max="5000" value="800" class="slider" id="myRange2">
+		</div>
+		<p>Velocidade inicial do centro de massa (m/s):</p>
+		<div class="vectorcontainer">		
+			<div class="input_label">
+				<p>vx: </p> <span id="vx_span"></span></p>
+				<input type="number" step="any" id="vx" value="10.0" class="numberinput">
+			</div>
+			<div class="input_label">
+				<p>vy: </p> <span id="vy_span"></span></p>
+				<input type="number" step="any" id="vy" value="10.0" class="numberinput">
+			</div>
+			<div class="input_label">
+				<p>vz: </p> <span id="vz_span"></span></p>
+				<input type="number" step="any" id="vz" value="0.0" class="numberinput">
+			</div>
+		</div>
+		<p>Posição inicial do centro de massa (m):</p>
+		<div class="vectorcontainer">		
+			<div class="input_label">
+				<p>rx: </p> <span id="rx_span"></span></p>
+				<input type="number" step="any" id="rx" value="0.0" class="numberinput">
+			</div>
+			<div class="input_label">
+				<p>ry: </p> <span id="ry_span"></span></p>
+				<input type="number" step="any" id="ry" value="0.0" class="numberinput">
+			</div>
+			<div class="input_label">
+				<p>rz: </p> <span id="rz_span"></span></p>
+				<input type="number" step="any" id="rz" value="0.0" class="numberinput">
+			</div>
+		</div>
+		<input class="botao" id="clickMe" type="button" value="Simular" onclick="iniciar()" />
+
+	</div> 
+	<div class="graficos">
+		<div id="g_trajetoria" class="grafico"></div>
+		<div id="g_rx" class="grafico"></div>
+		<div id="g_ry" class="grafico"></div>
+		<div id="g_rz" class="grafico"></div>
+		<div id="g_velocidade" class="grafico"></div>
+		<div id="g_vx" class="grafico"></div>
+		<div id="g_vy" class="grafico"></div>
+		<div id="g_vz" class="grafico"></div>
+		<div id="g_em" class="grafico"></div>
+		<div id="g_uk1" class="grafico"></div>
+		<div id="g_uk2" class="grafico"></div>
+	</div>
+
+	<script type="text/javascript" src="wrapper.js"></script>
+</body>
+
+</html>
