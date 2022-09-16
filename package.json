@@ -1,6 +1,4 @@
 {
   "dependencies": {
-    "browser-sync": "^2.27.10",
-    "numjs": "^0.16.1"
   }
 }
