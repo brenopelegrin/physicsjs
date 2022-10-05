@@ -2,7 +2,7 @@
 const status_obj = {
     movimento3d:{
         gui: true,
-        api: true
+        api: false
     },
     rocketlaunch:{
         gui: false,

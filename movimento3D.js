@@ -57,6 +57,16 @@ function drag_force(air_viscosity, air_density, drag_coef, dimension_1d, dimensi
     return drag;
 }
 
+function gravity_force(m_body, vector_r){
+    r_terra = 6371.1*1000 //m
+    M_terra = 5.972e24 //kg
+    G = 6.6743e-11 //gravitational constant
+    r_y = vector_r[1]-r_terra
+    force_y = (-G*M_terra*m_body)/(r_y*r_y)
+
+    return [0.0, force_y, 0.0]
+}
+
 function Arrays_sum(array1, array2) 
 {
   var result = [];
@@ -119,7 +129,7 @@ function simulate(dt,m,radius,v,r,withdragcondition){
     while (r[i][1] >= radius){
         if (withdragcondition == "with drag"){
             Fdrag = drag_force(air_viscosity, air_density, drag_coef, 2*radius, cross_area, v[i]);
-            Fnet = Arrays_sum(Fg, Fdrag);
+            Fnet = Arrays_sum(gravity_force(m, r[i]), Fdrag);
             a_new = scalar_times_vector(1/m, Fnet);
 
             a.push(a_new);
