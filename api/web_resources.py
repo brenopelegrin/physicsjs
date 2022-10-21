@@ -7,7 +7,6 @@ from time import sleep
 from flask import jsonify, render_template
 import werkzeug
 from phys_resources import *
-import numpy as np
 
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
