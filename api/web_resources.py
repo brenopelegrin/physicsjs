@@ -4,7 +4,7 @@ from webargs.flaskparser import use_kwargs, parser
 #from server import db
 from models import *
 from time import sleep
-from flask import jsonify
+from flask import jsonify, render_template
 import werkzeug
 from phys_resources import *
 import numpy as np
