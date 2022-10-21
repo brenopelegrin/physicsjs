@@ -11,10 +11,6 @@ api.add_resource(SimulateMov3D, '/api/simulate/mov3d')
 def documentation():
     return "You can view the server-end documentation on <a href='https://github.com/brenopelegrin/physicsjs/tree/master/api/'>GitHub.</a>"
 
-@app.route('/<path:path>')
-def static_file(path):
-    return app.send_static_file(path)
-
 @app.route('/')
 def index():
     return app.send_static_file("index.html")
