@@ -1,9 +1,9 @@
 from server import app, api
 from models import *
-from resources import *
+from web_resources import *
 #import multiprocessing
 
-#api.add_resource(CreateDevice, '/device/new')
+api.add_resource(SimulateMov3D, '/simulate/mov3d')
 
 @app.route('/')
 def documentation():
