@@ -5,7 +5,7 @@ from flask_restful import reqparse, abort, Api, Resource
 
 import json
 
-app = Flask(__name__, static_url_path='', static_folder='static')
+app = Flask(__name__)
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 

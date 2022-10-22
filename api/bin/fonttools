@@ -1,4 +1,4 @@
-#!/home/brenopelegrin/dev/physicsjs/bin/python3
+#!/home/brenopelegrin/dev/physicsjs/api/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
