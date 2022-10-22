@@ -23,9 +23,9 @@ For testing purposes, you can use the Heroku production server [https://physicsj
     "v0": [10,10,0]
 }
 ```
-### Sending simulation request
+### Sending simulation request (to Heroku production server)
 ```bash
-curl -X GET https://<server_ip>:<server_port>/simulate/mov3d -H 'Content-Type: application/json' -d '{"mass": 1.0,"drag": true,"dt": 0.001,"radius": 0.2,"r0": [0,0,0],"v0": [10,10,0]}'
+curl -X GET https://physicsjsapi.herokuapp.com/simulate/mov3d -H 'Content-Type: application/json' -d '{"mass": 1.0,"drag": true,"dt": 0.001,"radius": 0.2,"r0": [0,0,0],"v0": [10,10,0]}'
 ```
 It will return a json response with the resulting data.
 
