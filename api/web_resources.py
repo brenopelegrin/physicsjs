@@ -45,7 +45,6 @@ class SimulateMov3D(Resource):
         parser.add_argument('radius', required=True, type=float, help='You need to inform mass', location='json')
         parser.add_argument('drag', required=True, type=bool, help='You need to inform mass', location='json')
         args = parser.parse_args()
-        print(args)
         ts_current = time.time()
         task = Task(args=args, status="waiting", created=ts_current, expire=ts_current+max_task_time)
         
@@ -57,7 +56,7 @@ class SimulateMov3D(Resource):
         return task_schema.dump(task)
 
 def RunTask(task, args):
-    print(f"task {task.id} is running")
+    print(f"task {task.id} is running", flush=True)
     task.status = "running"
     db.session.commit()
 
@@ -74,19 +73,19 @@ def RunTaskCleaner():
     ts_current = time.time()
     task = Task.query.filter(Task.created < ts_current-max_task_time).first()
     if task != None:
-        print(f"task {task.id} deleted because it exceeded max storage time")
+        print(f"task {task.id} deleted because it exceeded max storage time", flush=True)
         Task.query.filter_by(id = task.id).delete()
         db.session.commit()
 
 def TaskHandler():
-    print("started taskhandler")
+    print("started taskhandler", flush=True)
     while 1:
         task = Task.query.filter_by(status='waiting').first()
         if task != None:
-            print(f'task {task.id} is ready to run.')
+            print(f'task {task.id} is ready to run.', flush=True)
 
             task.result = RunTask(task=task, args=task.args)
-            print(f"task {task.id} is finished")
+            print(f"task {task.id} is finished", flush=True)
             task.status = "done"
 
             db.session.commit()
