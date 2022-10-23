@@ -25,3 +25,4 @@ task_schema = TaskSchema()
 tasks_schema = TaskSchema(many=True)
     
 db.create_all()
+db.engine.dispose()

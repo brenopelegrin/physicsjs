@@ -78,7 +78,9 @@ def RunTaskCleaner():
         db.session.commit()
 
 def TaskHandler():
+    # Needs to implement new SQL session, because the main SQL session is terminated when trying to run the simulation
     print("started taskhandler", flush=True)
+
     while 1:
         task = Task.query.filter_by(status='waiting').first()
         if task != None:
