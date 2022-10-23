@@ -1,16 +1,41 @@
 # physicsjs API
 
 ## Getting started
-You can deploy the server by running
+
+For testing purposes, you can use the Heroku production server https://physicsjsapi.herokuapp.com
+
+### Running the API using Heroku CLI (recommended)
+
+After cloning the repository and getting to the "api" directory, just run:
+
+```
+pip install -r requirements.txt
+```
 
 ```bash
+heroku local
+```
+
+### Running the API manually
+
+First, install the requirements
+
+```
 pip install -r requirements.txt
+```
+
+Then, you can deploy the web server by running
+
+```bash
 gunicorn app:app
 ```
 
-For testing purposes, you can use the Heroku production server [https://physicsjsapi.herokuapp.com]
+And run the Task Handler server by running
+```bash
+python3 -m handler.py
+```
 
-## Requesting data of mov3d simulator
+## Requesting data from mov3d simulator
 
 ### Example of request json
 ```javascript
