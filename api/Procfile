@@ -1,1 +1,2 @@
+process: python handler.py
 web: gunicorn app:app -c gunicorn.config.py
