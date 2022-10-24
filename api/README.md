@@ -2,7 +2,7 @@
 
 ## Getting started
 
-To run locally, clone de repository:
+To run locally, clone the repository:
 ```bash
 git clone https://github.com/brenopelegrin/physicsjs.git
 ```
