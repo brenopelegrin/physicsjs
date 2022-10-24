@@ -54,9 +54,11 @@ And run the Task Handler server by running
 python3 -m handler.py
 ```
 
-## Requesting data from mov3d simulator
+## mov3d simulator
 
-### Example of request json
+### Sending simulation request (to Heroku production server)
+
+### Example of request json initial parameters
 ```javascript
 {
     "mass": 1.0,
@@ -67,14 +69,13 @@ python3 -m handler.py
     "v0": [10,10,0]
 }
 ```
-### Sending simulation request (to Heroku production server)
 
-To create a new simulation, run
+To create a new simulation, make a request to the /simulate/mov3d endpoint passing the parameters in json:
 
 ```bash
 curl -X GET https://physicsjsapi.herokuapp.com/simulate/mov3d -H 'Content-Type: application/json' -d '{"mass": 1.0,"drag": true,"dt": 0.001,"radius": 0.2,"r0": [0,0,0],"v0": [10,10,0]}'
 ```
-It will return a json response confirmating the simulation task registration.
+Then, it will return a json response confirmating the simulation task registration.
 
 ```javascript
 {
