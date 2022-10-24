@@ -8,7 +8,7 @@ For testing purposes, you can use the Heroku production server https://physicsjs
 
 After cloning the repository and getting to the "api" directory, just run:
 
-```
+```bash
 source bin/activate
 pip install -r requirements.txt
 ```
@@ -21,7 +21,8 @@ heroku local
 
 First, install the requirements
 
-```
+```bash
+source bin/activate
 pip install -r requirements.txt
 ```
 
