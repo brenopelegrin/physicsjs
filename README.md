@@ -14,6 +14,6 @@ In the "api" directory, there is a Flask RESTful API written in Python with inte
 
 The API can receive various simulations requests and store them in a processing queue.
 
-After adding a simulation to the queue, the API will run the waiting simulation make the result data available in an endpoint.
+The API will constantly check for the existence of waiting simulations on queue and run them, making the result data available on a specific endpoint.
 
 Then, the client can query the endpoint to get the resulting data and use it for its own purposes.
