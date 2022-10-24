@@ -24,6 +24,12 @@ First, install the requirements
 pip install -r requirements.txt
 ```
 
+Set the Postgres database URL:
+
+```bash
+export DATABASE_URL=postgres://[user]:[password]@[netloc]:[port]/[dbname]
+```
+
 Then, you can deploy the web server by running
 
 ```bash
