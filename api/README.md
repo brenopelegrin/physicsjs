@@ -2,7 +2,18 @@
 
 ## Getting started
 
-For testing purposes, you can use the Heroku production server https://physicsjsapi.herokuapp.com
+To run locally, clone de repository:
+```bash
+git clone https://github.com/brenopelegrin/physicsjs.git
+```
+
+Then cd to the "api" directory:
+
+```bash
+cd physicsjs/api/
+```
+
+For testing purposes, you can use the Heroku production server: https://physicsjsapi.herokuapp.com
 
 ### Running the API using Heroku CLI (recommended)
 
