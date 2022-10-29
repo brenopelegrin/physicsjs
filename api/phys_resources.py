@@ -1,7 +1,5 @@
 import numpy as np
 import math
-#import plotly.express as px
-#import plotly
 import json
 
 G = 6.6743e-11 # m3 kg-1 s-2

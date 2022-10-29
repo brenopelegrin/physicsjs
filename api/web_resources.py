@@ -67,7 +67,7 @@ class DrawGraph(Resource):
             return make_response(render_template_string(buffer.getvalue()), 200, headers)
 
 class SimulateMov3D(Resource):
-    def get(self):
+    def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('dt', required=True, type=float, help='You need to inform dt', location='json')
         parser.add_argument('r0', required=True, type=list, help='You need to inform r0', location='json')
