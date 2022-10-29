@@ -8,6 +8,7 @@ import multiprocessing.dummy as context
 
 api.add_resource(SimulateMov3D, '/simulate/mov3d')
 api.add_resource(ViewTask, '/task/<int:task_id>/view')
+#api.add_resource(DrawGraph, '/graph/get')
 
 @app.route('/')
 def documentation():
