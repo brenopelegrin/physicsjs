@@ -24,6 +24,12 @@ source bin/activate
 pip install -r requirements.txt
 ```
 
+Write the Postgres database URL in the .env file:
+
+```bash
+echo "DATABASE_URL='postgres://[user]:[password]@[netloc]:[port]/[dbname]'" >> .env
+```
+
 ```bash
 heroku local
 ```
@@ -80,6 +86,7 @@ Then, it will return a json response confirmating the simulation task registrati
 ```javascript
 {
     "id": task_id,
+    "simtype": "mov3d",
     "created": creation_timestamp,
     "expire": expire_timestamp,
     "args": {"mass": 1.0,"drag": true,"dt": 0.001,"radius": 0.2,"r0": [0,0,0],"v0": [10,10,0]},
@@ -103,6 +110,7 @@ And then it will return the task info:
 ```javascript
 {
     "id": task_id,
+    "simtype": simulation_type,
     "created": creation_timestamp,
     "expire": expire_timestamp,
     "args": args_you_passed,

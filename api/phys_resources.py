@@ -110,18 +110,5 @@ class Simulation3D:
     def result(self):
         print(self.result)
 
-#body = SphericalBody(mass=1, radius=0.2, drag_coefficient=0.5)
-#fluid = Fluid(density=1.184, knematic_viscosity=15.52e-6)  
-
-#sim = Simulation3D(body_params=body.params, fluid_params=fluid.params, r0=[0,0,0], v0=[10,10,0], dt=0.001)
-#sim.config["drag"] = True
-#sim.run()
-
-#r_result = np.array(sim.result["r"])
-#fig = px.line_3d(x=r_result[:, 0], y=r_result[:, 1], z=r_result[:, 2])
-#graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-#print(graphJSON)
-#fig.show()
-
 
     
