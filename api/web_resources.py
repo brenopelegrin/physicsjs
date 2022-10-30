@@ -12,6 +12,7 @@ import time
 import numpy as np
 from base64 import b64encode
 import io
+from server import frontend_url
 
 from datetime import datetime
 

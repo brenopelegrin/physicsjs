@@ -79,7 +79,7 @@ python3 -m handler.py
 To create a new simulation, make a request to the /simulate/mov3d endpoint passing the parameters in json:
 
 ```bash
-curl -X GET https://physicsjsapi.herokuapp.com/simulate/mov3d -H 'Content-Type: application/json' -d '{"mass": 1.0,"drag": true,"dt": 0.001,"radius": 0.2,"r0": [0,0,0],"v0": [10,10,0]}'
+curl -X POST https://physicsjsapi.herokuapp.com/simulate/mov3d -H 'Content-Type: application/json' -d '{"mass": 1.0,"drag": true,"dt": 0.001,"radius": 0.2,"r0": [0,0,0],"v0": [10,10,0]}'
 ```
 Then, it will return a json response confirmating the simulation task registration.
 

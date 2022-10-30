@@ -1,2 +1,2 @@
-web: gunicorn app:app
+web: gunicorn app:app -c gunicorn.conf.py -b :5000
 worker: python handler.py
