@@ -81,6 +81,7 @@ function send_api_request(data, api_endpoint){
 
 async function simulate_mov3d_api(data){
     task_id = await send_api_request(data, mov3d_URL);
+    console.log("task id: ", task_id)
     result = null
     while (result == null){
         result = await probe_task(task_id);
