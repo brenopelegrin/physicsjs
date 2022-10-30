@@ -66,7 +66,7 @@ def simulate3D(sim_params:dict, body_params:dict, fluid_params:dict, r0:np.ndarr
         alpha_new = np.array([0,0,0])
         alpha.append(alpha_new.tolist())
 
-        new = euler(a=np.array(a[i]), alpha=np.array(alpha[i]), v=np.array(v[i]), w=np.array(w[i]), r=np.array(r[i]), h=dt)
+        new = euler(a=np.around(np.array(a[i]),6), alpha=np.around(np.array(alpha[i]),6), v=np.around(np.array(v[i]),6), w=np.around(np.array(w[i]),6), r=np.around(np.array(r[i]),6), h=dt)
 
         v.append(new["vn"].tolist())
         r.append(new["rn"].tolist())
