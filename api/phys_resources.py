@@ -72,7 +72,7 @@ def simulate3D(sim_params:dict, body_params:dict, fluid_params:dict, r0:np.ndarr
         r.append(np.around(new["rn"],6).tolist())
         w.append(np.around(new["wn"],6).tolist())
 
-        t.append(t[i]+dt)
+        t.append(round(t[i]+dt,6))
         i+=1
 
     result={"t": t, "a": a, "v": v, "r": r, "w": w, "alpha": alpha}
