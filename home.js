@@ -1,8 +1,10 @@
-//let status_movimento3d_gui = true;
-const status_obj = {
+const backend_URL='http://physicsjsapi.herokuapp.com'
+
+var status_obj = {
     movimento3d:{
         gui: true,
-        api: false
+        api: true
+        //still needs to implement ping request to mov3d api
     },
     rocketlaunch:{
         gui: false,
@@ -22,6 +24,9 @@ if (status_obj.movimento3d.gui){
 
 if (status_obj.movimento3d.api){
     btn_movimento3d_api.className="active";
+    btn_movimento3d_api.onclick = function () {
+        window.open(backend_URL);
+    };
 }
 
 

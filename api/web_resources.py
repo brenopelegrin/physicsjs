@@ -40,6 +40,10 @@ class ViewTask(Resource):
         task = Task.query.get(task_id)
         return task_schema.dump(task)
 
+class Ping(Resource):
+    def get(self):
+        return {"status": "online"}
+
 class DrawGraph(Resource):
     def get(self):
 
