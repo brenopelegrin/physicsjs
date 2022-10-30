@@ -4,10 +4,7 @@ from flask_restful import reqparse, abort, Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
-
 import json
-from dotenv import load_dotenv
-load_dotenv()
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
