@@ -1,5 +1,5 @@
 var slider1 = document.getElementById("myRange1");
-var output1 = document.getElementById("demo1");
+var output1 = document.getElementById("radius_span");
 output1.innerHTML = slider1.value;
 var vx = document.getElementById("vx");
 var vy = document.getElementById("vy");
@@ -20,40 +20,158 @@ slider1.oninput = function() {
 }
 
 var slider2 = document.getElementById("myRange2");
-var output2 = document.getElementById("demo2");
+var output2 = document.getElementById("mass_span");
+var apitoggle = document.getElementById("api_toggle");
+var apistatus = document.getElementById("api_status");
+apistatus.innerHTML = "not started";
+apitoggle.checked = true;
+
 output2.innerHTML = slider2.value;
 
 slider2.oninput = function() {
     output2.innerHTML = this.value;
 }
 
-function iniciar(){
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const backend_URL='https://physicsjsapi.herokuapp.com'
+
+const mov3d_URL=backend_URL.concat('/simulate/mov3d')
+const task_URL=backend_URL.concat('/task/')
+
+function probe_task(task_id){
+    api_endpoint = task_URL.concat(String(task_id), '/view')
+    body = {
+        method: "GET", 
+        headers: {
+            'Access-Control-Allow-Origin': backend_URL
+        }
+    }
+    
+    return ( fetch(api_endpoint, body)
+    .then((response) => response.json())
+    .then((response) => response["result"]
+    )
+    .catch((error) => {
+        console.error('Error:', error);
+    }) );
+}
+
+function send_api_request(data, api_endpoint){
+    console.log("sent api request")
+    body = {
+        method: "POST", 
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': backend_URL
+        }
+    }
+    
+    return ( fetch(api_endpoint, body)
+    .then((response) => response.json())
+    .then((response) => response["id"]
+    )
+    .catch((error) => {
+        console.error('Error:', error);
+    }) );
+}
+
+async function simulate_mov3d_api(data){
+    task_id = await send_api_request(data, mov3d_URL);
+    result = null
+    while (result == null){
+        result = await probe_task(task_id);
+        window.apistatus.innerHTML = "waiting"
+        await sleep(1000)
+    }
+
+    t = await result["t"]
+    r = await result["r"]
+    v = await result["v"]
+    //a = await result["a"]
+
+    window.apistatus.innerHTML = "done"
+
+    return [t,v,r]
+}
+
+async function iniciar(){
+    use_server = apitoggle.checked
     massa = slider2.value*0.001;
     raio = slider1.value*0.01;
 
-    data1 = simulate(0.001, massa, raio, [[parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)]], [[parseFloat(rx.value),parseFloat(ry.value),parseFloat(rz.value)]], "without drag");
+    if (use_server){
 
-    r1_x = get_x_values(data1[2])
-    r1_y = get_y_values(data1[2])
-    r1_z = get_z_values(data1[2])
+        //Without drag
+        data1_params = {
+            "dt": 0.001,
+            "mass": massa,
+            "radius": raio,
+            "v0": [parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)],
+            "r0": [parseFloat(rx.value), parseFloat(ry.value), parseFloat(rz.value)],
+            "drag": false
+        }
 
-    v1_x = get_x_values(data1[1])
-    v1_y = get_y_values(data1[1])
-    v1_z = get_z_values(data1[1])
-    t1 = data1[0]
+        data1 = await simulate_mov3d_api(data1_params)
+        r1_x = get_x_values(data1[2])
+        r1_y = get_y_values(data1[2])
+        r1_z = get_z_values(data1[2])
+    
+        v1_x = get_x_values(data1[1])
+        v1_y = get_y_values(data1[1])
+        v1_z = get_z_values(data1[1])
+        t1 = data1[0]
+
+        //With drag
+
+        data2_params = {
+            "dt": 0.001,
+            "mass": massa,
+            "radius": raio,
+            "v0": [parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)],
+            "r0": [parseFloat(rx.value), parseFloat(ry.value), parseFloat(rz.value)],
+            "drag": true
+        }
+
+        data2 = await simulate_mov3d_api(data2_params)
+        r2_x = get_x_values(data2[2])
+        r2_y = get_y_values(data2[2])
+        r2_z = get_z_values(data2[2])
+    
+        v2_x = get_x_values(data2[1])
+        v2_y = get_y_values(data2[1])
+        v2_z = get_z_values(data2[1])
+        t2 = data2[0]
+    }
+
+    else{
+        data1 = simulate(0.001, massa, raio, [[parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)]], [[parseFloat(rx.value),parseFloat(ry.value),parseFloat(rz.value)]], "without drag");
+
+        r1_x = get_x_values(data1[2])
+        r1_y = get_y_values(data1[2])
+        r1_z = get_z_values(data1[2])
+    
+        v1_x = get_x_values(data1[1])
+        v1_y = get_y_values(data1[1])
+        v1_z = get_z_values(data1[1])
+        t1 = data1[0]
+
+        data2 = simulate(0.001, massa, raio, [[parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)]], [[parseFloat(rx.value),parseFloat(ry.value),parseFloat(rz.value)]], "with drag");
+
+        r2_x = get_x_values(data2[2])
+        r2_y = get_y_values(data2[2])
+        r2_z = get_z_values(data2[2])
+    
+        v2_x = get_x_values(data2[1])
+        v2_y = get_y_values(data2[1])
+        v2_z = get_z_values(data2[1])
+        t2 = data2[0]
+    }
 
     energias1 = calc_energy(massa, data1[1], data1[2])
-
-    data2 = simulate(0.001, massa, raio, [[parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)]], [[parseFloat(rx.value),parseFloat(ry.value),parseFloat(rz.value)]], "with drag");
-
-    r2_x = get_x_values(data2[2])
-    r2_y = get_y_values(data2[2])
-    r2_z = get_z_values(data2[2])
-
-    v2_x = get_x_values(data2[1])
-    v2_y = get_y_values(data2[1])
-    v2_z = get_z_values(data2[1])
-    t2 = data2[0]
 
     energias2 = calc_energy(massa, data2[1], data2[2])
 

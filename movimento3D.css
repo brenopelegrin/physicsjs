@@ -60,7 +60,21 @@ input{
   padding-bottom: 5px;
 }
 
+.togglecontainer{
+  flex: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+  padding-bottom: 5px;
+}
+
 .input_label{
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle{
   display: flex;
   flex-direction: column;
 }

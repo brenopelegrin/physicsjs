@@ -14,11 +14,11 @@
 		<p>Obs: r é o vetor trajetória e v é o vetor velocidade.</p>
 		<p>Desenvolvido por <a href="https://github.com/brenopelegrin/">brenopelegrin</a>. Acesse o repositório do projeto no <a href="https://github.com/brenopelegrin/physicsjs/">GitHub</a>.</p>
 		<div class="slidecontainer">
-			<p>Raio da bola (cm): <span id="demo1"></span></p>
+			<p>Raio da bola (cm): <span id="radius_span"></span></p>
 			<input type="range" min="1" max="50" value="20" class="slider" id="myRange1">
 		</div>
 		<div class="slidecontainer">
-			<p>Massa da bola (g): <span id="demo2"></span></p>
+			<p>Massa da bola (g): <span id="mass_span"></span></p>
 			<input type="range" min="10" max="5000" value="800" class="slider" id="myRange2">
 		</div>
 		<p>Velocidade inicial do centro de massa (m/s):</p>
@@ -50,6 +50,13 @@
 				<p>rz: </p> <span id="rz_span"></span></p>
 				<input type="number" step="any" id="rz" value="0.0" class="numberinput">
 			</div>
+		</div>
+		<p>Use API to simulate?</p>
+		<div class="togglecontainer">
+			<div class="toggle">
+				<input type="checkbox" id="api_toggle">
+			</div>
+			<p>API Status: <span id="api_status"></span></p>
 		</div>
 		<input class="botao" id="clickMe" type="button" value="Simular" onclick="iniciar()" />
 
