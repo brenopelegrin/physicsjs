@@ -2,13 +2,13 @@
 
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #181D32;
     padding: 5px;
   }
   
   .header a {
     float: left;
-    color: black;
+    color: white;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -23,12 +23,12 @@
   }
   
   .header a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #5376e9;
+    color: white;
   }
   
   .header a.active {
-    background-color: rgb(100, 202, 100);
+    background-color: #5376e9;
     color: white;
   }
   
@@ -47,7 +47,7 @@ body{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -moz-font-feature-settings: "liga" on;
-    background: linear-gradient(45deg, rgb(211, 211, 211) 0%, rgb(255, 255, 255) 100%);
+    background: #020202;
 }
 
 p {
@@ -80,9 +80,11 @@ p {
 }
 
 .card{
+    text-decoration-color: #5376e9;
     width: 40vw;
+    color: white;
     min-height: 25vh;
-    background-color: white;
+    background-color: #2D262F;
     border-radius: 0.25rem;
     box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
     display: flex;
@@ -102,7 +104,8 @@ p {
 
 .card .card-title{
     font-weight: bold;
-    background: rgb(100, 202, 100);
+    color: white;
+    background: #181D32;
 }
 
 .card .card-toggles{
@@ -130,9 +133,10 @@ button{
     margin: 1rem 1rem 0rem 1rem;
     display: flex;
     align-items: center;
+    color: white;
     border-radius: 10px;
     flex-direction: row;
-    background: rgb(100, 202, 100);
+    background: #2D262F;
 }
 
 .info p{
@@ -140,9 +144,9 @@ button{
 }
 
 .active{
-    background: rgb(100, 202, 100);
+    background: #5376e9;
 }
 .active:hover{
     cursor:pointer;
-    background: rgb(84, 170, 84);
+    background: #425eb9;
 }

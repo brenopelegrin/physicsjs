@@ -74,11 +74,6 @@ input{
   flex-direction: column;
 }
 
-.toggle{
-  display: flex;
-  flex-direction: column;
-}
-
 .numberinput{
   color: black;
   height: 20px;
