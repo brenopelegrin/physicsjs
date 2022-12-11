@@ -36,9 +36,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const backend_URL='https://physicsjsapi.herokuapp.com'
+const backend_URL='https://flask-tasks.onrender.com'
 
-const mov3d_URL=backend_URL.concat('/simulate/mov3d')
+const mov3d_URL=backend_URL.concat('/task/new')
 const task_URL=backend_URL.concat('/task/')
 
 function probe_task(task_id){
@@ -46,7 +46,7 @@ function probe_task(task_id){
     body = {
         method: "GET", 
         headers: {
-            'Access-Control-Allow-Origin': backend_URL
+            'Access-Control-Allow-Origin': '*'
         }
     }
     
@@ -66,7 +66,7 @@ function send_api_request(data, api_endpoint){
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': backend_URL
+            'Access-Control-Allow-Origin': '*'
         }
     }
     
@@ -108,12 +108,15 @@ async function iniciar(){
 
         //Without drag
         data1_params = {
-            "dt": 0.001,
-            "mass": massa,
-            "radius": raio,
-            "v0": [parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)],
-            "r0": [parseFloat(rx.value), parseFloat(ry.value), parseFloat(rz.value)],
-            "drag": false
+            "type": "mov3d",
+            "args": {
+                "dt": 0.001,
+                "mass": massa,
+                "radius": raio,
+                "v0": [parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)],
+                "r0": [parseFloat(rx.value), parseFloat(ry.value), parseFloat(rz.value)],
+                "drag": false
+            }
         }
 
         data1 = await simulate_mov3d_api(data1_params)
@@ -129,12 +132,15 @@ async function iniciar(){
         //With drag
 
         data2_params = {
-            "dt": 0.001,
-            "mass": massa,
-            "radius": raio,
-            "v0": [parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)],
-            "r0": [parseFloat(rx.value), parseFloat(ry.value), parseFloat(rz.value)],
-            "drag": true
+            "type": "mov3d",
+            "args": {
+                "dt": 0.001,
+                "mass": massa,
+                "radius": raio,
+                "v0": [parseFloat(vx.value), parseFloat(vy.value), parseFloat(vz.value)],
+                "r0": [parseFloat(rx.value), parseFloat(ry.value), parseFloat(rz.value)],
+                "drag": true
+            }
         }
 
         data2 = await simulate_mov3d_api(data2_params)
