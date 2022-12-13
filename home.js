@@ -25,7 +25,7 @@ if (status_obj.movimento3d.gui){
 if (status_obj.movimento3d.api){
     btn_movimento3d_api.className="active";
     btn_movimento3d_api.onclick = function () {
-        window.open("https://github.com/brenopelegrin/physicsjs/tree/master/api");
+        window.open("https://github.com/brenopelegrin/flask-tasks-docker");
     };
 }
 
