@@ -1,6 +1,5 @@
 import numpy as np
 import math
-import json
 
 G = 6.6743e-11 # m3 kg-1 s-2
 
@@ -107,6 +106,3 @@ class Simulation3D:
         self.result = simulate3D(sim_params=self.config, body_params=self.body_params, fluid_params=self.fluid_params, r0 = self.r0, v0 = self.v0, dt = self.dt)
     def result(self):
         print(self.result)
-
-
-    
