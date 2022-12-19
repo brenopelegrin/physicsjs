@@ -41,7 +41,7 @@ const backend_URL='https://flask-tasks.onrender.com'
 const mov3d_URL=backend_URL.concat('/task/new')
 const task_URL=backend_URL.concat('/task/')
 
-function probe_task(task_id){
+function get_task_result(task_id){
     api_endpoint = task_URL.concat(String(task_id), '/view')
     body = {
         method: "GET", 
@@ -53,6 +53,24 @@ function probe_task(task_id){
     return ( fetch(api_endpoint, body)
     .then((response) => response.json())
     .then((response) => response["result"]
+    )
+    .catch((error) => {
+        console.error('Error:', error);
+    }) );
+}
+
+function probe_task(task_id){
+    api_endpoint = task_URL.concat(String(task_id), '/view')
+    body = {
+        method: "GET", 
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
+    }
+    
+    return ( fetch(api_endpoint, body)
+    .then((response) => response.json())
+    .then((response) => response["status"]
     )
     .catch((error) => {
         console.error('Error:', error);
@@ -80,15 +98,17 @@ function send_api_request(data, api_endpoint){
 }
 
 async function simulate_mov3d_api(data){
+    window.apistatus.innerHTML = "sending request";
     task_id = await send_api_request(data, mov3d_URL);
+    window.apistatus.innerHTML = "received task id";
     console.log("task id: ", task_id)
-    result = null
-    while (result == null){
-        result = await probe_task(task_id);
-        window.apistatus.innerHTML = "waiting"
-        await sleep(1000)
+    task_status = "none";
+    while (task_status != "SUCCESS"){
+        task_status = await probe_task(task_id);
+        window.apistatus.innerHTML = "waiting for workers";
+        await sleep(500);
     }
-
+    result = await get_task_result(task_id);
     t = await result["t"]
     r = await result["r"]
     v = await result["v"]
