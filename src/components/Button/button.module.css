@@ -1,0 +1,39 @@
+.default{
+    background-color: white;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 4vh;
+    border-radius: 0.5vw;
+    border-style: none;
+}
+
+.square{
+    background-color: white;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 4vh;
+}
+
+.colorful{
+    background-image: linear-gradient(to right, #283048 0%, #859398  51%, #283048  100%);
+    margin: 10px;
+    padding: 1.25vh 1vw;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    border-style:none;
+    display: block;
+}
+
+.colorful:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+ 
