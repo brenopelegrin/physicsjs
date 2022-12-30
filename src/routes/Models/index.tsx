@@ -13,16 +13,16 @@ export default function ModelsPage(){
                 tags={['knematics', 'air resistance']}/>
         </WrapItem>
         <WrapItem>
-        <Card   url_api='#'
-                url_gui='#' 
+        <Card   url_api=''
+                url_gui='' 
                 title='Indisponível' 
                 subtitle='indisponível' 
                 description='Ainda não há nada aqui :(' 
                 tags={['none']}/>
         </WrapItem>
         <WrapItem>
-        <Card   url_api='#'
-                url_gui='#' 
+        <Card   url_api=''
+                url_gui='' 
                 title='Indisponível' 
                 subtitle='indisponível' 
                 description='Ainda não há nada aqui :(' 

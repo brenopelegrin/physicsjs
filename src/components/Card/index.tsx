@@ -76,9 +76,10 @@ export default function Card(props: CardProps) {
                 _focus={{
                 bg: 'gray.200',
                 }}>
+                {props.url_api ? (
                 <Link href={props.url_api} isExternal>
                     API
-                </Link>
+                </Link>) : <Text>API</Text>}
             </Button>
             <Button
                 flex={1}
@@ -95,9 +96,11 @@ export default function Card(props: CardProps) {
                 _focus={{
                 bg: 'blue.500',
                 }}>
+                {props.url_gui ? (
                 <RouteLink to={props.url_gui}>
                     GUI
-                </RouteLink>
+                </RouteLink>) : <Text>GUI</Text>}
+
             </Button>
             </Stack>
         </Box>
