@@ -3,10 +3,15 @@ export function setTaskData(data: any){
     localStorage.setItem("taskData", JSON.stringify(data));
 }
 
-import Plot from 'react-plotly.js';
-import { Wrap, WrapItem, Stack, Text, Button, theme, Box, Flex, useColorMode, Alert, AlertIcon } from '@chakra-ui/react'
+import PlotlyPlot from 'react-plotly.js';
+import { Wrap, WrapItem, Stack, Text, Button, theme, Flex, useColorMode, Alert, AlertIcon } from '@chakra-ui/react'
+import { Box as ChakraBox } from '@chakra-ui/react'
+
+import { useMediaQuery, Container } from '@chakra-ui/react'
 
 import { useNavigate } from 'react-router-dom';
+
+import { useEffect, useState } from 'react';
 
 function getTextColor(colorMode:string){
     if(colorMode === 'dark'){
@@ -17,6 +22,27 @@ function getTextColor(colorMode:string){
     }
 }
 
+function Box(props:any){
+    return(
+        <ChakraBox>
+            {props.children}
+        </ChakraBox>
+    )
+}
+
+function Plot(props:any){
+    var layout = props.layout;
+
+    layout["height"] = "400";
+    layout["width"] = "400";
+
+    return(
+        <PlotlyPlot {...props} layout={layout}>
+            {props.children}
+        </PlotlyPlot>
+    )
+}
+
 export default function ResultsPage(){
     const myData = String(localStorage.getItem("taskData"));
     const result = JSON.parse(myData)["result"];
@@ -25,7 +51,21 @@ export default function ResultsPage(){
     const defaultLayout = (title2: string) => {return( {
         plot_bgcolor: theme.colors.whiteAlpha[100],
         paper_bgcolor: theme.colors.whiteAlpha[50],
-        title: title2,
+        showlegend: true,
+	    legend: {orientation: "h"},
+        margin: {
+            l: 50,
+            r: 50,
+            b: 50,
+            t: 70,
+            pad: 2
+        },
+        title: {
+            text: title2,
+            font: {
+                size: 18,
+            },
+        },
         font: {
             color: getTextColor(colorMode),
         }
@@ -64,7 +104,7 @@ export default function ResultsPage(){
       }
 
     return(
-        <Stack justify='center' align='center' spacing={8} padding='1.8em' flexDirection="column">
+        <Stack justify='center' align='center' spacing={4}>
             <Box >
             <Alert status='success'>
                 <AlertIcon />
@@ -72,7 +112,6 @@ export default function ResultsPage(){
             </Alert>
             </Box>
             <Stack spacing={4} direction="row" justify='center' align='center'>
-
                 <Button onClick={exportToJson}>
                     Download JSON
                 </Button>
@@ -80,6 +119,7 @@ export default function ResultsPage(){
                     Realizar outra simulação
                 </Button>
             </Stack>
+        <Stack justify='space-around' gridGap={4} align='center' wrap="wrap" flexDirection="row">
             <WrapItem>
                 <Box shadow="md">
                 <Plot
@@ -342,6 +382,7 @@ export default function ResultsPage(){
                 layout={ defaultLayout("PE, KE (t)") }
             />
             </WrapItem>
+            </Stack>
       </Stack>
     )
 }
