@@ -51,7 +51,7 @@ export default function ResultsPage(){
       const exportToJson = (e: any) => {
         e.preventDefault()
         downloadFile({
-          data: result,
+          data: JSON.stringify(result),
           fileName: 'simulation.json',
           fileType: 'text/json',
         })
