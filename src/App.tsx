@@ -6,12 +6,14 @@ import { ChakraProvider, HStack, Wrap, WrapItem, Box, Flex, Spacer, Container } 
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 
 import HomePage from './routes/HomePage'
 import ModelsPage from './routes/Models'
 import Mov3dPage from './routes/Models/Mov3d'
+import ResultsPage from './routes/Models/Mov3d/Results'
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/models' element={<ModelsPage />} />
           <Route path='/models/mov3d' element={<Mov3dPage />} />
+          <Route path='/models/mov3d/results' element={<ResultsPage />} />
+          <Route path='/static/movimento3D.html' element={<Link to="/static/movimento3D.html"/>}/>
         </Routes>
       </Router> 
       </Box>

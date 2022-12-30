@@ -22,14 +22,46 @@ import SliderCustom from '../Slider'
 interface CardWithButtonProps{
     header: string,
     children: any,
-    buttonText: string,
+    buttonText?: string,
     minWidth: string
-    buttonOnClick: any,
+    buttonOnClick?: any,
+    customButton?: any
+}
+
+function buttonFunction(props: CardWithButtonProps){
+    if('customButton' in props){
+        return(
+            <Box>
+                <props.customButton/>
+            </Box>
+        )
+    }
+    else {
+        return (
+            <Box>
+            <Button
+                mt={10}
+                w={'full'}
+                bg={'blue.400'}
+                color={'white'}
+                rounded={'xl'}
+                onClick={props.buttonOnClick}
+                _hover={{
+                    bg: 'blue.500',
+                }}
+                _focus={{
+                    bg: 'blue.500',
+                }}>
+                {props.buttonText}
+            </Button>
+            </Box>
+        );
+    }
 }
 
 export default function CardWithButton(props: CardWithButtonProps) {
     return (
-        <Center py={6}>
+        <Center>
             <Box
             bg={useColorModeValue('blackAlpha.100', 'blackAlpha.500')}
             boxShadow={'1xl'}
@@ -50,23 +82,7 @@ export default function CardWithButton(props: CardWithButtonProps) {
 
             <Box bg={useColorModeValue('gray.50', 'gray.900')} px={6} py={10}>
                 {props.children}
-                <Box>
-                <Button
-                    mt={10}
-                    w={'full'}
-                    bg={'blue.400'}
-                    color={'white'}
-                    rounded={'xl'}
-                    onClick={props.buttonOnClick}
-                    _hover={{
-                        bg: 'blue.500',
-                    }}
-                    _focus={{
-                        bg: 'blue.500',
-                    }}>
-                    {props.buttonText}
-                </Button>
-                </Box>
+                {buttonFunction(props)}
             </Box>
             </Box>
         </Center>

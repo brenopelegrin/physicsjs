@@ -11,6 +11,8 @@ import {
     useColorModeValue,
     ListItemProps,
   } from '@chakra-ui/react';
+
+import { Link as RouteLink } from "react-router-dom";
   
 interface CardProps{
     title: string;
@@ -28,6 +30,7 @@ function GetTags(props: CardProps){
             <Badge
                 px={2}
                 py={1}
+                key={Math.floor(Math.random() * 100)}
                 bg={useColorModeValue('gray.50', 'gray.800')}
                 fontWeight={'400'}>
                 {tag}
@@ -92,9 +95,9 @@ export default function Card(props: CardProps) {
                 _focus={{
                 bg: 'blue.500',
                 }}>
-                <Link href={props.url_gui} isExternal>
+                <RouteLink to={props.url_gui}>
                     GUI
-                </Link>
+                </RouteLink>
             </Button>
             </Stack>
         </Box>

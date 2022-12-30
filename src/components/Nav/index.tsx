@@ -4,7 +4,6 @@ import {
     ButtonGroup,
     Container,
     Flex,
-    Text,
     HStack,
     IconButton,
     useBreakpointValue,
@@ -20,9 +19,7 @@ import {
         <Box as="nav" bg="bg-surface" boxShadow={useColorModeValue('sm', 'sm-dark')}>
           <Container py={{ base: '4', lg: '5' }}>
             <HStack spacing="10" justify="space-between">
-              <Text>
-                Test
-              </Text>
+              <></>
               {isDesktop ? (
                 <Flex justify="space-between" flex="1">
                   <ButtonGroup variant="link" spacing="8">

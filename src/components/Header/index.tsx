@@ -95,8 +95,8 @@ const NavBarContainer = ({ children, ...props }:any) => {
       mb={8}
       pl={4}
       pr={4}
-      pb={2}
-      pt={2}
+      pb={3}
+      pt={3}
       bg={["blackAlpha.100", ""]}
       {...props}
     >
