@@ -18,7 +18,7 @@ const baseURL = 'https://flask-tasks.onrender.com';
 
 // Define a mutation function to make the POST request
 export async function makePost({dt, mass, radius, r0, v0, drag}: Mov3dPostArgs){
-  const response = await axios.post(baseURL+'/task/new', {
+  const response = await axios.post(baseURL+'/task', {
     "type": "mov3d",
     "args": {
         dt,
@@ -33,7 +33,7 @@ export async function makePost({dt, mass, radius, r0, v0, drag}: Mov3dPostArgs){
 };
 
 export async function makeGet({id}: Mov3dGetArgs){
-  const response = await axios.get(baseURL+'/task/'+id+'/view');
+  const response = await axios.get(baseURL+'/task/'+id);
   return response;
 };
 
