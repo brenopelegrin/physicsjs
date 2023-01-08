@@ -53,7 +53,7 @@ function sleep(ms: any) {
 
 export default function Mov3dPage() {
 
-  const [buttonText, setButtonText] = React.useState(<Text>Simular</Text>);
+  const [buttonText, setButtonText] = React.useState(<Text>Simulate</Text>);
   const [buttonDisable, setButtonDisable] = React.useState(false);
   const [dragBool, setDragBool] = React.useState(true);
 
@@ -76,7 +76,7 @@ export default function Mov3dPage() {
             mutateGet({id});
         }
         else{
-            setButtonText(<Text>Tarefa terminada</Text>);
+            setButtonText(<Text>Showing results...</Text>);
             if (!isEmpty(data["data"]["result"])){
                 const taskData = data["data"];
                 setTaskData(taskData);
@@ -97,7 +97,7 @@ export default function Mov3dPage() {
     {
         onSuccess: (data, variables) => {
             const id = data["data"]["id"];
-            setButtonText(<HStack><Spinner/><Text>Aguardando execução...</Text></HStack>);
+            setButtonText(<HStack><Spinner/><Text>Waiting execution...</Text></HStack>);
             mutateGet({id});
             setButtonDisable(true);
         },
@@ -148,14 +148,13 @@ export default function Mov3dPage() {
   }
   
   const handleButtonClick = () => {
-    setButtonText(<HStack><Spinner/><Text>Enviando pedido à API</Text></HStack>);
+    setButtonText(<HStack><Spinner/><Text>Sending request to API...</Text></HStack>);
     const dt = 0.001;
     const r0 = [rxValue, ryValue, rzValue];
     const v0 = [vxValue, vyValue, vzValue];
     const mass = mValue;
     const radius = rValue;
     const drag = dragBool;
-    console.log("sending to API");
     mutatePost({dt, r0, v0, mass, radius, drag});
   }
 
@@ -174,12 +173,12 @@ export default function Mov3dPage() {
 
   return (
     <Center>
-      <CardWithButton header="Controles" minWidth="1vw" customButton={myButton}>
+      <CardWithButton header="Controls" minWidth="1vw" customButton={myButton}>
       <List spacing={3}>
                 <ListItem>
                     <List spacing={-2}>
                         <ListItem>
-                            Massa (kg)
+                            Mass (kg)
                         </ListItem>
                         <ListItem>
                             <SliderCustom onChangeUseState={setMValue} id="mass_slider" default={m} min={0.01} max={1.00} step={0.01} marks={true}/>
@@ -189,7 +188,7 @@ export default function Mov3dPage() {
                 <ListItem pt={3}>
                     <List spacing={-2}>
                         <ListItem>
-                            Raio (m)
+                            Radius (m)
                         </ListItem>
                         <ListItem>
                             <SliderCustom onChangeUseState={setPosByRadius} id="radius_slider" default={r} min={0.1} max={1.00} step={0.01} marks={true}/>
@@ -198,7 +197,7 @@ export default function Mov3dPage() {
                 </ListItem>
                 <ListItem pt={5}>
                     <Text pb={2}>
-                        Velocidade inicial (m/s)
+                        Initial velocity (m/s)
                     </Text>
                     <Flex direction="row" gap={4}>
                       <InputIncrement value={vxValue} onChangeUseState={(value: string) => setVxValue(parseFloat(value))} default={vx} size="sm" name="x" min={0} max={1000} step={0.1} />
@@ -208,7 +207,7 @@ export default function Mov3dPage() {
                 </ListItem>
                 <ListItem pt={2}>
                     <Text pb={2}>
-                        Posição inicial (m)
+                        Initial position of the center of sphere (m)
                     </Text>
                     <Flex direction="row" gap={4}>
                       <InputIncrement value={rxValue} onChangeUseState={(value: string) => setRxValue(parseFloat(value))} default={rx} size="sm" name="x" min={rValue} max={1000} step={0.1} />
@@ -217,7 +216,7 @@ export default function Mov3dPage() {
                     </Flex>
                 </ListItem>
                 <ListItem>
-                    <Checkbox isChecked={dragBool} onChange={(e) => handleDragCheck(e)}>Considerar resistência do ar</Checkbox>
+                    <Checkbox isChecked={dragBool} onChange={(e) => handleDragCheck(e)}>Assume air resistance</Checkbox>
                 </ListItem>
                 </List>
       </CardWithButton>

@@ -108,7 +108,7 @@ export default function ResultsPage(){
             <Box >
             <Alert status='success'>
                 <AlertIcon />
-                Simulação realizada com sucesso!
+                Simulation performed successfully!
             </Alert>
             </Box>
             <Stack spacing={4} direction="row" justify='center' align='center'>
@@ -116,7 +116,7 @@ export default function ResultsPage(){
                     Download JSON
                 </Button>
                 <Button onClick={handleClickNewSim}>
-                    Realizar outra simulação
+                    Perform another simulation
                 </Button>
             </Stack>
         <Stack justify='space-around' gridGap={4} align='center' wrap="wrap" flexDirection="row">

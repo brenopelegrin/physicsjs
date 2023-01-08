@@ -63,7 +63,7 @@ export default function InputIncrement(props: InputIncrementProps){
             </NumberInput>
             {isError ? (
                  <FormHelperText color="red.400">
-                    O valor deve estar entre {props.min} e {props.max}
+                    The value must be within {props.min} and {props.max}
                  </FormHelperText>             
             ) : null}
 

@@ -1,19 +1,13 @@
 # physicsjs
 
+The "physicsjs" project aims to make simulations of various physical phenomena available on the internet. Each type of physical model has a graphical interface, which can help people understand the concepts involved in that phenomenon, and an API that enables users to obtain raw data about the simulations.
+
 ## Getting Started
 
-This repository contains a bunch of physics simulation software written in JavaScript or Python.
+The project consists of a React frontend that allows the user to control variables, tune the simulations and visualize the simulations results in graphs or other media. The frontend makes requests to an API based on [flask-tasks-docker](https://github.com/brenopelegrin/flask-tasks-docker), that registers a task in a queue and proccess them.
 
 ### Front-end
-In the root of the directory, there is a static website with an interface to visualize the simulation data. 
-
-The website can run the simulation in your device or make a request to the back-end api hosted on Heroku.
+The documentation for the frontend is still not available, but will be added soon.
 
 ### Back-end
-In the "api" directory, there is a Flask RESTful API written in Python with integration to a Postgres database, ready to deploy on a Heroku dyno.
-
-The API can receive various simulations requests and store them in a processing queue.
-
-The back-end Task Handler will constantly check for the existence of waiting simulations on queue and run them, making the result data available on a specific endpoint.
-
-Then, the client can query the endpoint to get the resulting data and use it for its own purposes.
+The documentation for backend can be found [here](https://github.com/brenopelegrin/physicsjs/blob/master/backend/README.md).

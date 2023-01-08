@@ -8,24 +8,24 @@ export default function ModelsPage(){
         <Card   url_api='https://github.com/brenopelegrin/physicsjs/tree/master/backend'
                 url_gui='/models/mov3d' 
                 title='mov3d' 
-                subtitle='Cinemática em 3D' 
-                description='Simule o movimento de uma esfera em três dimensões. Grandezas variáveis: massa, raio, velocidade inicial, posição inicial. Documentação da API no GitHub' 
+                subtitle='Knematics in em 3D' 
+                description='Simulate the motion of a sphere in three dimensions considering or not the air resistance. Variable quantities: mass, radius, initial velocity, initial position. API documentation on GitHub.' 
                 tags={['knematics', 'air resistance']}/>
         </WrapItem>
         <WrapItem>
         <Card   url_api=''
                 url_gui='' 
-                title='Indisponível' 
-                subtitle='indisponível' 
-                description='Ainda não há nada aqui :(' 
+                title='Unavailable' 
+                subtitle='unavailable' 
+                description='There is nothing here yet :(' 
                 tags={['none']}/>
         </WrapItem>
         <WrapItem>
         <Card   url_api=''
                 url_gui='' 
-                title='Indisponível' 
-                subtitle='indisponível' 
-                description='Ainda não há nada aqui :(' 
+                title='Unavailable' 
+                subtitle='unavailable' 
+                description='There is nothing here yet :(' 
                 tags={['none']}/>
         </WrapItem>
       </Wrap>
