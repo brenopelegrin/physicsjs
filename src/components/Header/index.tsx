@@ -98,7 +98,7 @@ const NavBarContainer = ({ children, ...props }:any) => {
       pb={3}
       pt={3}
       boxShadow="md"
-      bg={useColorModeValue("blackAlpha.50", "blackAlpha.300")}
+      bg={useColorModeValue("blackAlpha.50", "blackAlpha.400")}
       {...props}
     >
       {children}

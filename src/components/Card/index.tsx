@@ -52,24 +52,29 @@ export default function Card(props: CardProps) {
         <Box
             maxW={'320px'}
             w={'full'}
-            bg={useColorModeValue('white', 'gray.900')}
-            boxShadow={'2xl'}
+            bg={useColorModeValue('gray.100', 'gray.900')}
+            boxShadow={'xl'}
             rounded={'lg'}
             p={6}
             textAlign={'center'}>
             <Heading fontSize={'2xl'} fontFamily={'body'}>
                 {props.title}
             </Heading>
-            <Text fontWeight={600} color={'gray.500'} mb={4}>
+            <Text fontWeight={600} color={'blue.500'} mb={4}>
                 {props.subtitle}
             </Text>
-            <Text
-                textAlign={'center'}
-                color={useColorModeValue('gray.700', 'gray.400')}
-                px={3}>
+            <Box
+                borderRadius={15}
+                padding="0.5em"
+                background={useColorModeValue("gray.50", "gray.800")}
+            >
+                <Text
+                    textAlign="center"
+                    px={3}>
 
-                {props.description}
-            </Text>
+                    {props.description}
+                </Text>
+            </Box>
             <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
                 {GetTags(props)}
             </Stack>
@@ -80,9 +85,11 @@ export default function Card(props: CardProps) {
                 fontSize={'sm'}
                 rounded={'full'}
                 disabled={props.url_api ? false : true}
-                _focus={{
-                bg: 'gray.200',
+                bg="transparent"
+                _hover={{
+                    bg: useColorModeValue('gray.300', 'gray.700'),
                 }}>
+    
                 {props.url_api ? (
                 <Link href={props.url_api} isExternal>
                     <HStack alignContent="center"><Icon as={BiBook} boxSize={4}/> <Text>Docs/API</Text></HStack>
