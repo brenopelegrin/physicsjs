@@ -1,4 +1,4 @@
-# physicsjs
+# physicsjs (now **physics on web**)
 
 The "physicsjs" project aims to make simulations of various physical phenomena available on the internet. Each type of physical model has a graphical interface, which can help people understand the concepts involved in that phenomenon, and an API that enables users to obtain raw data about the simulations.
 
