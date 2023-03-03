@@ -39,7 +39,7 @@ export default function HomePage() {
         </Flex>
         <Box padding='2em' margin="auto" textAlign="center" maxWidth='80vw'>
             <Text>
-                The "physics on web" project aims to make simulations of various physical phenomena available on the internet. Each type of physical model has a graphical interface, which can help people understand the concepts involved in that phenomenon, and an API that enables users to obtain raw data about the simulations.
+                The "physics on web" project aims to make simulations of various physical phenomena available on the internet. You can explore physical models thorugh a graphical interface to understand the concepts involved in that phenomenon, and can obtain raw data thorugh the API.
             </Text>
         </Box>
         <Box>
