@@ -121,7 +121,7 @@ export default function ResultsPage(){
         navigate("/models/mov3d");
       }
 
-    if (invalidData) {
+    if (localData === null) {
         return(
         <Center>
             <BoxInfo 
@@ -132,8 +132,8 @@ export default function ResultsPage(){
         </Center>
         )
     } else{
-        const result = localData["result"];
-        const id = localData["id"];
+        const result = localData['result'];
+        const id = localData['id'];
         return(
         <Stack justify='center' align='center' spacing={4}>
             <Box >
