@@ -4,18 +4,18 @@ export function setTaskData(data: any){
 }
 
 import PlotlyPlot from 'react-plotly.js';
-import { Wrap, WrapItem, Stack, Text, Button, theme, Flex, useColorMode, Alert, AlertIcon, useColorModeValue } from '@chakra-ui/react'
+import { Wrap, WrapItem, Center, Stack, Text, Button, theme, Flex, useColorMode, Alert, AlertIcon, useColorModeValue } from '@chakra-ui/react'
 import { Box as ChakraBox } from '@chakra-ui/react'
 
 import { useMediaQuery, Container } from '@chakra-ui/react'
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, redirect } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
 import BoxInfo from '../../../../components/BoxInfo';
 
-import { CheckIcon } from '@chakra-ui/icons';
+import { CheckIcon, WarningIcon } from '@chakra-ui/icons';
 
 function getTextColor(colorMode:string){
     if(colorMode === 'dark'){
@@ -48,9 +48,25 @@ function Plot(props:any){
 }
 
 export default function ResultsPage(){
-    const myData = JSON.parse(String(localStorage.getItem("taskData")));
-    const result = myData["result"];
     const { colorMode, toggleColorMode } = useColorMode();
+    const navigate = useNavigate();
+
+    const [invalidData, setInvalidData] = useState(true);
+    const [change, setChange] = useState(true);
+
+    const [localData, setLocalData] = useState(null);
+  
+    useEffect(() => {
+      if (localStorage.getItem("taskData") !== null) {
+        setInvalidData(false);
+        setLocalData(JSON.parse(String(localStorage.getItem("taskData"))));
+      } else {
+        console.log("invalid data")
+        setInvalidData(true);
+        navigate('/models/mov3d/')
+      }
+    }, [change]);
+
     const arrayColumn = (arr: any, n: any) => arr.map( (x:any) => x[n]);
     const defaultLayout = (title2: string) => {return( {
         plot_bgcolor: theme.colors.whiteAlpha[100],
@@ -92,7 +108,7 @@ export default function ResultsPage(){
         a.remove()
       }
       
-      const exportToJson = (e: any) => {
+      const exportToJson = (e: any, result: any) => {
         e.preventDefault()
         downloadFile({
           data: JSON.stringify(result),
@@ -101,24 +117,35 @@ export default function ResultsPage(){
         })
       }
 
-      const navigate = useNavigate();
-
       function handleClickNewSim() {
         navigate("/models/mov3d");
       }
 
-    return(
+    if (invalidData) {
+        return(
+        <Center>
+            <BoxInfo 
+                title="Analyzing data..."
+                bgColor={useColorModeValue('blue.100', 'blue.800')}
+                icon={<WarningIcon/>}
+                boxText={<Text>If the local stored data is invalid, you will be redirected to the simulation page.</Text>}/>
+        </Center>
+        )
+    } else{
+        const result = localData["result"];
+        const id = localData["id"];
+        return(
         <Stack justify='center' align='center' spacing={4}>
             <Box >
             <BoxInfo 
                 icon={<CheckIcon boxSize={5}/>}
                 title="Simulation performed successfully!"
-                boxText={<Text>Task ID: {myData.id}</Text>}
+                boxText={<Text>Task ID: {id}</Text>}
                 bgColor={useColorModeValue("green.100", "green.700")}
             />
             </Box>
             <Stack spacing={4} direction="row" justify='center' align='center'>
-                <Button onClick={exportToJson}>
+                <Button onClick={(e) => exportToJson(e, result)}>
                     Download JSON
                 </Button>
                 <Button onClick={handleClickNewSim}>
@@ -391,4 +418,5 @@ export default function ResultsPage(){
             </Stack>
       </Stack>
     )
+    }
 }
