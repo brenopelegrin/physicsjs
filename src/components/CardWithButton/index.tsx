@@ -70,11 +70,11 @@ export default function CardWithButton(props: CardWithButtonProps) {
             overflow={'hidden'}>
             <Stack
                 textAlign={'center'}
-                p={1.5}
+                p={2}
                 color={useColorModeValue('gray.800', 'white')}
                 align={'center'}>
                 <Stack direction={'row'} align={'center'} justify={'center'}>
-                <Text fontSize={'md'} fontWeight={800}>
+                <Text fontSize={'xl'} fontWeight={800}>
                     {props.header}
                 </Text>
                 </Stack>
@@ -84,7 +84,7 @@ export default function CardWithButton(props: CardWithButtonProps) {
                 flexDirection="column" 
                 bg={useColorModeValue('gray.50', 'gray.900')}
                 padding="1em"
-                gap={4}
+                gap={0}
             >
                 {props.children}
                 {buttonFunction(props)}

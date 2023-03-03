@@ -3,6 +3,8 @@ import {
     Avatar,
     Box,
     Center,
+    HStack,
+    Icon,
     Text,
     Stack,
     Button,
@@ -13,6 +15,10 @@ import {
   } from '@chakra-ui/react';
 
 import { Link as RouteLink } from "react-router-dom";
+
+import {ExternalLinkIcon} from "@chakra-ui/icons";
+
+import { BiBook } from "react-icons/bi";
   
 interface CardProps{
     title: string;
@@ -73,18 +79,20 @@ export default function Card(props: CardProps) {
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
+                disabled={props.url_api ? false : true}
                 _focus={{
                 bg: 'gray.200',
                 }}>
                 {props.url_api ? (
                 <Link href={props.url_api} isExternal>
-                    API
-                </Link>) : <Text>API</Text>}
+                    <HStack alignContent="center"><Icon as={BiBook} boxSize={4}/> <Text>Docs/API</Text></HStack>
+                </Link>) : <HStack alignContent="center"><Icon as={BiBook} boxSize={4}/> <Text>Docs/API</Text></HStack>}
             </Button>
             <Button
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
+                disabled={props.url_gui ? false : true}
                 bg={'blue.400'}
                 color={'white'}
                 boxShadow={
@@ -98,8 +106,8 @@ export default function Card(props: CardProps) {
                 }}>
                 {props.url_gui ? (
                 <RouteLink to={props.url_gui}>
-                    GUI
-                </RouteLink>) : <Text>GUI</Text>}
+                    <HStack alignContent="center"><ExternalLinkIcon boxSize={4}/> <Text>Access</Text></HStack>
+                </RouteLink>) : <HStack alignContent="center"><ExternalLinkIcon boxSize={4}/> <Text>Access</Text></HStack>}
 
             </Button>
             </Stack>

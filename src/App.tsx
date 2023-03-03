@@ -2,7 +2,7 @@ import Testando from './components/FetchAPI'
 import NavBar from './components/Header'
 import * as React from 'react'
 
-import { ChakraProvider, HStack, Wrap, WrapItem, Box, Flex, Spacer, Container } from '@chakra-ui/react'
+import { ChakraProvider, HStack, Wrap, WrapItem, Box, Flex, Spacer, Container, useColorModeValue } from '@chakra-ui/react'
 import {
   BrowserRouter as Router,
   Routes,
