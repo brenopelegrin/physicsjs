@@ -149,7 +149,7 @@ export default function ResultsPage(){
                     Download JSON
                 </Button>
                 <Button onClick={handleClickNewSim}>
-                    Perform another simulation
+                    Simulate again
                 </Button>
             </Stack>
         <Stack justify='space-around' gridGap={4} align='center' wrap="wrap" flexDirection="row">

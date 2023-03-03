@@ -29,7 +29,6 @@ interface ServerInfoProps{
 export default function BoxInfoComponent(props: ServerInfoProps){
     return(
         <Box
-            minWidth="sm"
             background={props.bgColor ? props.bgColor : useColorModeValue('blackAlpha.100', 'blackAlpha.400')}
             borderRadius={15}
         >
