@@ -4,7 +4,7 @@ export function setTaskData(data: any){
 }
 
 import PlotlyPlot from 'react-plotly.js';
-import { Wrap, WrapItem, Stack, Text, Button, theme, Flex, useColorMode, Alert, AlertIcon } from '@chakra-ui/react'
+import { Wrap, WrapItem, Stack, Text, Button, theme, Flex, useColorMode, Alert, AlertIcon, useColorModeValue } from '@chakra-ui/react'
 import { Box as ChakraBox } from '@chakra-ui/react'
 
 import { useMediaQuery, Container } from '@chakra-ui/react'
@@ -12,6 +12,10 @@ import { useMediaQuery, Container } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
+
+import BoxInfo from '../../../../components/BoxInfo';
+
+import { CheckIcon } from '@chakra-ui/icons';
 
 function getTextColor(colorMode:string){
     if(colorMode === 'dark'){
@@ -44,8 +48,8 @@ function Plot(props:any){
 }
 
 export default function ResultsPage(){
-    const myData = String(localStorage.getItem("taskData"));
-    const result = JSON.parse(myData)["result"];
+    const myData = JSON.parse(String(localStorage.getItem("taskData")));
+    const result = myData["result"];
     const { colorMode, toggleColorMode } = useColorMode();
     const arrayColumn = (arr: any, n: any) => arr.map( (x:any) => x[n]);
     const defaultLayout = (title2: string) => {return( {
@@ -106,10 +110,12 @@ export default function ResultsPage(){
     return(
         <Stack justify='center' align='center' spacing={4}>
             <Box >
-            <Alert status='success'>
-                <AlertIcon />
-                Simulation performed successfully!
-            </Alert>
+            <BoxInfo 
+                icon={<CheckIcon boxSize={5}/>}
+                title="Simulation performed successfully!"
+                boxText={<Text>Task ID: {myData.id}</Text>}
+                bgColor={useColorModeValue("green.100", "green.700")}
+            />
             </Box>
             <Stack spacing={4} direction="row" justify='center' align='center'>
                 <Button onClick={exportToJson}>

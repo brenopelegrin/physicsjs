@@ -21,7 +21,9 @@ import { Link as RouteLink } from "react-router-dom";
 export default function HomePage() {
   return (
     <Center width={"100vw"} height={"85vh"}>
+        
     <Wrap justify='center' padding='1.8em'>
+    
         <Flex justify="center" align="center" textAlign="center">
             <Heading
                 fontWeight={600}

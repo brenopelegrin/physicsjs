@@ -70,20 +70,25 @@ export default function CardWithButton(props: CardWithButtonProps) {
             overflow={'hidden'}>
             <Stack
                 textAlign={'center'}
-                p={3}
+                p={1.5}
                 color={useColorModeValue('gray.800', 'white')}
                 align={'center'}>
                 <Stack direction={'row'} align={'center'} justify={'center'}>
-                <Text fontSize={'2xl'} fontWeight={800}>
+                <Text fontSize={'md'} fontWeight={800}>
                     {props.header}
                 </Text>
                 </Stack>
             </Stack>
 
-            <Box bg={useColorModeValue('gray.50', 'gray.900')} px={6} py={10}>
+            <Flex 
+                flexDirection="column" 
+                bg={useColorModeValue('gray.50', 'gray.900')}
+                padding="1em"
+                gap={4}
+            >
                 {props.children}
                 {buttonFunction(props)}
-            </Box>
+            </Flex>
             </Box>
         </Center>
     );

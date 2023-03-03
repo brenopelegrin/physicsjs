@@ -18,6 +18,7 @@ import {
     InputGroup,
     Input,
     InputRightAddon,
+    Show,
     InputLeftAddon,
     SliderMark,
     List,
@@ -45,7 +46,9 @@ import { useMutation, useQuery } from 'react-query';
 
 import { useNavigate } from "react-router-dom";
 
-import { setTaskData } from "./Results"
+import { setTaskData } from "./Results";
+
+import BoxInfo from "../../../components/BoxInfo";
 
 function sleep(ms: any) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -54,6 +57,7 @@ function sleep(ms: any) {
 export default function Mov3dPage() {
 
   const [buttonText, setButtonText] = React.useState(<Text>Simulate</Text>);
+  const [controlsVisible, setControlsVisible] = React.useState(true);
   const [buttonDisable, setButtonDisable] = React.useState(false);
   const [dragBool, setDragBool] = React.useState(true);
 
@@ -76,7 +80,12 @@ export default function Mov3dPage() {
             mutateGet({id});
         }
         else{
-            setButtonText(<Text>Showing results...</Text>);
+            setButtonText(
+                <Box>
+                    <Text>Task completed. Showing results.</Text>
+                    <Text>Task ID: {String(id)}</Text>
+                </Box>
+            );
             if (!isEmpty(data["data"]["result"])){
                 const taskData = data["data"];
                 setTaskData(taskData);
@@ -97,7 +106,12 @@ export default function Mov3dPage() {
     {
         onSuccess: (data, variables) => {
             const id = data["data"]["id"];
-            setButtonText(<HStack><Spinner/><Text>Waiting execution...</Text></HStack>);
+            setButtonText(
+                <Box>
+                    <Text>Executing task on the server.</Text>
+                    <Text>Task ID: {String(id)}</Text>
+                </Box>
+            );
             mutateGet({id});
             setButtonDisable(true);
         },
@@ -111,7 +125,7 @@ export default function Mov3dPage() {
   const [rx, ry, rz] = [r, r, r];
   const [vx, vy, vz] = [10.0, 10.0, 10.0];
   const m = 0.5;
-  
+
 
   const [vxValue, setVxValue] = React.useState(vx);
   const [vyValue, setVyValue] = React.useState(vy);
@@ -126,29 +140,31 @@ export default function Mov3dPage() {
 
   const [postResult, setPostResult] = React.useState('');
 
+
   const myButton = () => {
     return(
-        <Button
-            mt={10}
-            w={'full'}
-            bg={'blue.400'}
-            color={'white'}
-            rounded={'xl'}
-            onClick={handleButtonClick}
-            _hover={{
-                bg: 'blue.500',
-            }}
-            disabled={buttonDisable}
-            _focus={{
-                bg: 'blue.500',
-            }}>
-            {buttonText}
-        </Button>
+            <Button
+                mt={10}
+                w={'full'}
+                bg={'blue.400'}
+                color={'white'}
+                rounded={'xl'}
+                onClick={handleButtonClick}
+                _hover={{
+                    bg: 'blue.500',
+                }}
+                disabled={buttonDisable}
+                _focus={{
+                    bg: 'blue.500',
+                }}>
+                {buttonText}
+            </Button>
     )
   }
   
   const handleButtonClick = () => {
-    setButtonText(<HStack><Spinner/><Text>Sending request to API...</Text></HStack>);
+    setControlsVisible(false);
+    setButtonText(<Text>Sending request to API.</Text>);
     const dt = 0.001;
     const r0 = [rxValue, ryValue, rzValue];
     const v0 = [vxValue, vyValue, vzValue];
@@ -171,10 +187,11 @@ export default function Mov3dPage() {
     }
   }
 
+
   return (
     <Center>
-      <CardWithButton header="Controls" minWidth="1vw" customButton={myButton}>
-      <List spacing={3}>
+      {controlsVisible ?     <CardWithButton header="Controls" minWidth="1vw" customButton={myButton}>
+      <List spacing={2}>
                 <ListItem>
                     <List spacing={-2}>
                         <ListItem>
@@ -195,7 +212,7 @@ export default function Mov3dPage() {
                         </ListItem>
                     </List>
                 </ListItem>
-                <ListItem pt={5}>
+                <ListItem pt={3}>
                     <Text pb={2}>
                         Initial velocity (m/s)
                     </Text>
@@ -215,11 +232,15 @@ export default function Mov3dPage() {
                       <InputIncrement value={rzValue} onChangeUseState={(value: string) => setRzValue(parseFloat(value))} default={rz} size="sm" name="z" min={rValue} max={1000} step={0.1} />
                     </Flex>
                 </ListItem>
-                <ListItem>
+                <ListItem pt={1}>
                     <Checkbox isChecked={dragBool} onChange={(e) => handleDragCheck(e)}>Assume air resistance</Checkbox>
                 </ListItem>
                 </List>
-      </CardWithButton>
+      </CardWithButton> : <BoxInfo 
+                icon={<Spinner boxSize={5}/>}
+                title="Waiting the server..."
+                boxText={buttonText}
+            />}
     </Center>
   )
 }
