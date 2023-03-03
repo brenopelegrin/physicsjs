@@ -10,7 +10,7 @@ const NavBar = (props:any) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <NavBarContainer {...props}>
+    <NavBarContainer {...props} >
       <Logo marginLeft={2}
         w="140px"
       />
@@ -97,7 +97,8 @@ const NavBarContainer = ({ children, ...props }:any) => {
       pr={4}
       pb={3}
       pt={3}
-      bg={["blackAlpha.100", ""]}
+      boxShadow="md"
+      bg={useColorModeValue("blackAlpha.50", "blackAlpha.300")}
       {...props}
     >
       {children}
