@@ -92,7 +92,6 @@ const NavBarContainer = ({ children, ...props }:any) => {
       justify="space-between"
       wrap="wrap"
       w="100%"
-      mb={8}
       pl={4}
       pr={4}
       pb={3}

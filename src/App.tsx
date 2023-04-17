@@ -21,6 +21,7 @@ function App() {
       <Box height="100%">
       <Router>
         <NavBar/>
+        <Box marginTop="2em">
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/models' element={<ModelsPage />} />
@@ -28,6 +29,7 @@ function App() {
           <Route path='/models/mov3d/results' element={<ResultsPage />} />
           <Route path='/static/movimento3D.html' element={<Link to="/static/movimento3D.html"/>}/>
         </Routes>
+        </Box>
       </Router> 
       </Box>
     </ChakraProvider>
