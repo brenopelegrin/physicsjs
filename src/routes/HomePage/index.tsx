@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <Center width={"100vw"} height={"85vh"}>
     <Flex justify='center' padding='1.8em' direction='column'>
-        <Box justify="center" align="center" textAlign="center">
+        <Box justifyContent="center" alignItems="center" textAlign="center">
             <Heading
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
