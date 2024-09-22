@@ -1,32 +1,24 @@
+import { FaGithub } from 'react-icons/fa';
+import { Link as RouteLink } from 'react-router-dom';
+
 import {
   Box,
-  Heading,
-  Container,
-  Text,
   Button,
-  Spacer,
-  Stack,
-  Icon,
-  useColorModeValue,
-  createIcon,
   Center,
-  WrapItem,
-  HStack,
   Flex,
-  Wrap,
-  Link
+  Heading,
+  HStack,
+  Icon,
+  Link,
+  Spacer,
+  Text,
 } from '@chakra-ui/react';
-
-import { Link as RouteLink } from "react-router-dom";
-
-import {FaGithub} from "react-icons/fa";
 
 export default function HomePage() {
   return (
     <Center width={"100vw"} height={"85vh"}>
-    <Wrap justify='center' padding='1.8em'>
-    
-        <Flex justify="center" align="center" textAlign="center">
+    <Flex justify='center' padding='1.8em' direction='column'>
+        <Box justify="center" align="center" textAlign="center">
             <Heading
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
@@ -36,13 +28,13 @@ export default function HomePage() {
                 available on web
                 </Text>
             </Heading>
-        </Flex>
+        </Box>
         <Box padding='2em' margin="auto" textAlign="center" maxWidth='80vw'>
             <Text>
                 The "physics on web" project aims to make simulations of various physical phenomena available on the internet. You can explore physical models thorugh a graphical interface to understand the concepts involved in that phenomenon, and can obtain raw data thorugh the API.
             </Text>
         </Box>
-        <Box>
+        <Box padding='1em'>
             <Center>
                 <Button
                 colorScheme={'green'}
@@ -65,8 +57,7 @@ export default function HomePage() {
                 </Button>
             </Center>
         </Box>
-
-    </Wrap>
+    </Flex>
     </Center>
   );
 }
